@@ -1,4 +1,4 @@
-package gachon.example.hello;
+package com.example.cocktail;
 
 public class CocktailRecipe {
     String name;
