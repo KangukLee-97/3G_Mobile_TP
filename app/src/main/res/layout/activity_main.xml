@@ -4,12 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그아웃" />
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="#FFF000"
+        android:orientation="horizontal" />
+
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="593dp"
+        android:fastScrollEnabled="true">
+
+    </ListView>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/recipe"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="레시피"
+                app:backgroundTint="#2196F3" />
+
+            <Button
+                android:id="@+id/rank"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="순위"
+                app:backgroundTint="#2196F3" />
+
+            <Button
+                android:id="@+id/mypage"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="마이페이지"
+                app:backgroundTint="#2196F3" />
+
+            <Button
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="주조기능사"
+                app:backgroundTint="#2196F3" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </LinearLayout>
