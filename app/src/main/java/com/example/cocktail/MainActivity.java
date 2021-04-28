@@ -1,25 +1,21 @@
 package com.example.cocktail;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
-    private View drawerView;
+import java.util.ArrayList;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
+public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,33 +25,61 @@ public class MainActivity extends AppCompatActivity {
         if(user==null){
             startLoginActivity();
         }
-        Toolbar toolbar;
-        toolbar=(Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        drawerLayout=(DrawerLayout)findViewById(R.id.main);
-        drawerView=(View)findViewById(R.id.drawer);
 
         findViewById(R.id.btnLogout).setOnClickListener(onClickListener);
-        findViewById(R.id.btnrecipe).setOnClickListener(onClickListener);
-        findViewById(R.id.btnrecipe2).setOnClickListener(onClickListener);
-
+        
+        ListView listView = findViewById(R.id.listView);
+        CocktailAdapter adapter = new CocktailAdapter();
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        listView.setAdapter(adapter);
+        
     }
+    
+    class CocktailAdapter extends BaseAdapter {
+        ArrayList<CocktailRecipe> recipes = new ArrayList<CocktailRecipe>();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{
-                drawerLayout.openDrawer(drawerView);
-                return true;
-            }
+        @Override
+        public int getCount() {
+            return recipes.size();
         }
-        return super.onOptionsItemSelected(item);
+
+        public void addItem(CocktailRecipe recipe){
+            recipes.add(recipe);
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return recipes.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            CocktailRecipeView cocktailRecipeView = null;
+
+            if(convertView == null) {
+                cocktailRecipeView = new CocktailRecipeView(getApplicationContext());
+            } else {
+                cocktailRecipeView = (CocktailRecipeView)convertView;
+            }
+            CocktailRecipe recipe = recipes.get(position);
+            cocktailRecipeView.setName(recipe.getName());
+            cocktailRecipeView.setTag(recipe.getTag());
+            cocktailRecipeView.setImage(recipe.getResId());
+            return cocktailRecipeView;
+        }
     }
-
-
+    
+  
     View.OnClickListener onClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -64,23 +88,12 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().signOut();
                     startLoginActivity();
                     break;
-                case R.id.btnrecipe:
-                    startRecipeActivity();
-                    break;
-                case R.id.btnrecipe2:
-                    startRecipeActivity();
-                    break;
             }
         }
     };
 
     private void startLoginActivity() {
         Intent intent=new Intent(this, loginActivity.class);
-        startActivity(intent);
-    }
-
-    private void startRecipeActivity() {
-        Intent intent=new Intent(this, RecipeActivity.class);
         startActivity(intent);
     }
 }

@@ -1,70 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:id="@+id/main"
     android:orientation="vertical">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnLogout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="로그아웃" />
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="#FFF000"
+        android:orientation="horizontal" />
 
-        <include
-            layout="@layout/toolbar"
-            android:id="@+id/toolbar"/>
 
-        <TextView
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="593dp"
+        android:fastScrollEnabled="true">
+
+    </ListView>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:text="검색 부분"/>
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="로그아웃" />
-
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:columnCount="2"
-            android:orientation="vertical"
-            android:rowCount="2">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnrecipe"
-                android:layout_width="match_parent"
+                android:id="@+id/recipe"
+                android:layout_width="118dp"
                 android:layout_height="match_parent"
-                android:text="레시피" />
+                android:layout_weight="1"
+                android:text="레시피"
+                app:backgroundTint="#2196F3" />
 
             <Button
-                android:id="@+id/btncustom"
-                android:layout_width="match_parent"
+                android:id="@+id/rank"
+                android:layout_width="118dp"
                 android:layout_height="match_parent"
-                android:text="커스텀 레시피" />
+                android:layout_weight="1"
+                android:text="순위"
+                app:backgroundTint="#2196F3" />
 
             <Button
-                android:id="@+id/btnmypage"
-                android:layout_width="match_parent"
+                android:id="@+id/mypage"
+                android:layout_width="118dp"
                 android:layout_height="match_parent"
-                android:text="마이페이지" />
+                android:layout_weight="1"
+                android:text="마이페이지"
+                app:backgroundTint="#2196F3" />
 
             <Button
-                android:id="@+id/btntest"
-                android:layout_width="match_parent"
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="주조기능사" />
-        </GridLayout>
+                android:layout_weight="1"
+                android:text="주조기능사"
+                app:backgroundTint="#2196F3" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:text="랭킹 부분"/>
-
-    </LinearLayout>
-    <include layout="@layout/drawer"/>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
