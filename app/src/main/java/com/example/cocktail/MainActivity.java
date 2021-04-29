@@ -11,6 +11,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
+    private ListView listView;
+    private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -38,19 +43,36 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=(DrawerLayout)findViewById(R.id.main);
         drawerView=(View)findViewById(R.id.drawer);
 
-        findViewById(R.id.btnLogout).setOnClickListener(onClickListener);
         findViewById(R.id.btnrecipe).setOnClickListener(onClickListener);
-        findViewById(R.id.btnrecipe2).setOnClickListener(onClickListener);
 
+        listView = (ListView) findViewById (R.id. listview);
+        ArrayAdapter <String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
+        listView.setAdapter (adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (menu[position]){
+                    case "레시피":
+                        startRecipeActivity();
+                        break;
+                    case "로그아웃":
+                        FirebaseAuth.getInstance().signOut();
+                        startLoginActivity();
+                        break;
+                }
+            }
+        });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:{
+            case android.R.id.home:
                 drawerLayout.openDrawer(drawerView);
                 return true;
-            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -60,14 +82,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
-                case R.id.btnLogout:
-                    FirebaseAuth.getInstance().signOut();
-                    startLoginActivity();
-                    break;
                 case R.id.btnrecipe:
-                    startRecipeActivity();
-                    break;
-                case R.id.btnrecipe2:
                     startRecipeActivity();
                     break;
             }

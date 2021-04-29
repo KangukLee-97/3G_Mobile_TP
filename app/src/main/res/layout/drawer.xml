@@ -8,10 +8,9 @@
     android:id="@+id/drawer"
     android:background="#4EB6A2">
 
-    <Button
-        android:id="@+id/btnrecipe2"
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="레시피"/>
+        android:id="@+id/listview"/>
 
 </LinearLayout>
