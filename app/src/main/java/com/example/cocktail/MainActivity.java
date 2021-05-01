@@ -45,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
         //4가지 버튼 클릭시 해당 activity로 이동
         findViewById(R.id.btnrecipe).setOnClickListener(onClickListener);
+        findViewById(R.id.btnmypage).setOnClickListener(onClickListener);
 
         //navigation menu
         drawerLayout=(DrawerLayout)findViewById(R.id.main);
         drawerView=(View)findViewById(R.id.drawer);
-        listView = (ListView) findViewById (R.id. listview);
+        listView = (ListView) findViewById (R.id. list);
         ArrayAdapter <String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
         listView.setAdapter (adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (menu[position]){
                     case "레시피":
                         startRecipeActivity();
+                        break;
+                    case "마이페이지":
+                        startUserInfoActivity();
                         break;
                     case "로그아웃":
                         FirebaseAuth.getInstance().signOut();
@@ -88,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btnrecipe:
                     startRecipeActivity();
                     break;
+                case R.id.btnmypage:
+                    startUserInfoActivity();
+                    break;
             }
         }
     };
@@ -101,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
     //recipe activity로 이동
     private void startRecipeActivity() {
         Intent intent=new Intent(this, RecipeActivity.class);
+        startActivity(intent);
+    }
+
+    //recipe activity로 이동
+    private void startUserInfoActivity() {
+        Intent intent=new Intent(this, UserInfoActivity.class);
         startActivity(intent);
     }
 }

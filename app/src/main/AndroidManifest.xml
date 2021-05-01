@@ -19,6 +19,7 @@
         <activity android:name=".signupActivity"/>
         <activity android:name=".loginActivity"/>
         <activity android:name=".RecipeActivity"/>
+        <activity android:name=".UserInfoActivity"/>
     </application>
 
 </manifest>
