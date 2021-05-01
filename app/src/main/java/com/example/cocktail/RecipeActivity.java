@@ -30,18 +30,6 @@ public class RecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe);
-
-        ListView listView = findViewById(R.id.listView);
-        CocktailAdapter adapter = new CocktailAdapter();
-        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
-        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
-        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
-        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
-        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
-        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
-        listView.setAdapter(adapter);
-
-
         //맨 위에 툴바 적용
         Toolbar toolbar;
         toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -50,7 +38,7 @@ public class RecipeActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //navigation menu
-        drawerLayout=(DrawerLayout)findViewById(R.id.main);
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawerrecipe);
         drawerView=(View)findViewById(R.id.drawer);
         list = (ListView) findViewById (R.id.list);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
@@ -72,6 +60,17 @@ public class RecipeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        ListView listView = findViewById(R.id.listView);
+        CocktailAdapter adapter = new CocktailAdapter();
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        adapter.addItem(new CocktailRecipe("Cocktail name", "tag", R.drawable.design));
+        listView.setAdapter(adapter);
+
     }
 
     //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
