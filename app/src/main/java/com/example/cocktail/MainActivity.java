@@ -29,26 +29,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        //로그인 상태가 아니면 로그인 창으로 이동
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-
         if(user==null){
             startLoginActivity();
         }
+        
+        //맨 위에 툴바 적용
         Toolbar toolbar;
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        drawerLayout=(DrawerLayout)findViewById(R.id.main);
-        drawerView=(View)findViewById(R.id.drawer);
-
+        //4가지 버튼 클릭시 해당 activity로 이동
         findViewById(R.id.btnrecipe).setOnClickListener(onClickListener);
 
+        //navigation menu
+        drawerLayout=(DrawerLayout)findViewById(R.id.main);
+        drawerView=(View)findViewById(R.id.drawer);
         listView = (ListView) findViewById (R.id. listview);
         ArrayAdapter <String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
         listView.setAdapter (adapter);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
+    }//onCreate 끝
 
-
+    //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //4가지 버튼 클릭시 해당 activity로 이동
     View.OnClickListener onClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -89,11 +92,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //로그인 activity로 이동
     private void startLoginActivity() {
         Intent intent=new Intent(this, loginActivity.class);
         startActivity(intent);
     }
 
+    //recipe activity로 이동
     private void startRecipeActivity() {
         Intent intent=new Intent(this, RecipeActivity.class);
         startActivity(intent);

@@ -20,14 +20,13 @@ public class loginActivity extends AppCompatActivity {
 
     private static final String TAG="Sign";
     private FirebaseAuth mAuth;
-    Button Sign;
-    Button Login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initialize Firebase Auth
+        //파이어베이스 사용자 (Auth) 초기화
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.btnLogin).setOnClickListener(onClickListener);
@@ -56,6 +55,7 @@ public class loginActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
+    //로그인 창에서 뒤로가기를 눌렀을 시 앱 강제 종료
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -64,7 +64,7 @@ public class loginActivity extends AppCompatActivity {
         System.exit(1);
     }
 
-
+    //로그인 절차
     private void Login(){
         String email=((EditText)findViewById(R.id.ID)).getText().toString();
         String password=((EditText)findViewById(R.id.Password)).getText().toString();
@@ -96,6 +96,7 @@ public class loginActivity extends AppCompatActivity {
 
     private void startMainActivity(){
         Intent intent=new Intent(this, MainActivity.class);
+        //Main activity에서 뒤로가기를 눌렀을 시 앱 이 종료되도록 여태까지 stack에 쌓였던 activity를 없앰
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
