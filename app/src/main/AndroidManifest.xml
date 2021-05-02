@@ -20,6 +20,8 @@
         <activity android:name=".loginActivity"/>
         <activity android:name=".RecipeActivity"/>
         <activity android:name=".UserInfoActivity"/>
+        <activity android:name=".CustomActivity"/>
+        <activity android:name=".AddCustomActivity"/>
     </application>
 
 </manifest>
