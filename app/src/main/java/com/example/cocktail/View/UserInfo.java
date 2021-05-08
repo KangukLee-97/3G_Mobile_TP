@@ -1,4 +1,4 @@
-package com.example.cocktail;
+package com.example.cocktail.View;
 
 public class UserInfo {
     private String nickname;
