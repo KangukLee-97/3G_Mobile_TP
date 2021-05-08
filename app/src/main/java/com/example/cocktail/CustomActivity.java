@@ -51,18 +51,18 @@ public class CustomActivity extends AppCompatActivity {
                                         document.getData().get("title").toString(),
                                         document.getData().get("contents").toString(),
                                         document.getData().get("publisher").toString()));
+                                Log.d(TAG, "Error"+document.getData().get("title").toString());
                             }
+                            RecyclerView recyclerView=findViewById(R.id.customrecycle);
+                            recyclerView.setHasFixedSize(true);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(CustomActivity.this));
+
+                            RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomActivity.this, CustomList);
+                            recyclerView.setAdapter(mAdapter);
                         } else {
                         }
                     }
                 });
-
-        RecyclerView recyclerView=findViewById(R.id.customrecycle);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        RecyclerView.Adapter mAdapter=new RecipeAdpater(this, CustomList);
-        recyclerView.setAdapter(mAdapter);
 
         loader=findViewById(R.id.loader);
     }
