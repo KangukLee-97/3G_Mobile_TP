@@ -3,14 +3,20 @@ package com.example.cocktail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,12 +35,51 @@ public class CustomActivity extends AppCompatActivity {
     private static final String TAG="Custom";
     private RelativeLayout loader;
     private FirebaseAuth mAuth;
+    private DrawerLayout drawerLayout;
+    private View drawerView;
+    private ListView listView;
+    private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom);
         findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+
+        //맨 위에 툴바 적용
+        Toolbar toolbar;
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //navigation menu
+        drawerLayout=(DrawerLayout)findViewById(R.id.main);
+        drawerView=(View)findViewById(R.id.drawer);
+        listView = (ListView) findViewById (R.id. list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
+        listView.setAdapter (adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (menu[position]){
+                    case "레시피":
+                        startRecipeActivity();
+                        break;
+                    case "마이페이지":
+                        startUserInfoActivity();
+                        break;
+                    case "커스텀 레시피":
+                        startCustomActivity();
+                        break;
+                    case "로그아웃":
+                        FirebaseAuth.getInstance().signOut();
+                        startLoginActivity();
+                        break;
+                }
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,6 +112,17 @@ public class CustomActivity extends AppCompatActivity {
         loader=findViewById(R.id.loader);
     }
 
+    //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                drawerLayout.openDrawer(drawerView);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -80,6 +136,29 @@ public class CustomActivity extends AppCompatActivity {
 
     private void addCustomActivity() {
         Intent intent=new Intent(this, AddCustomActivity.class);
+        startActivity(intent);
+    }
+    //로그인 activity로 이동
+    private void startLoginActivity() {
+        Intent intent=new Intent(this, loginActivity.class);
+        startActivity(intent);
+    }
+
+    //recipe activity로 이동
+    private void startRecipeActivity() {
+        Intent intent=new Intent(this, RecipeActivity.class);
+        startActivity(intent);
+    }
+
+    //userInfo activity로 이동
+    private void startUserInfoActivity() {
+        Intent intent=new Intent(this, UserInfoActivity.class);
+        startActivity(intent);
+    }
+
+    //custom recipe activity로 이동
+    private void startCustomActivity() {
+        Intent intent=new Intent(this, CustomActivity.class);
         startActivity(intent);
     }
 }
