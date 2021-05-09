@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail.Fragment.CustomFragment;
 import com.example.cocktail.View.AddInfo;
 import com.example.cocktail.adapter.RecipeAdpater;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,20 +34,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class CustomActivity extends AppCompatActivity {
-    private static final String TAG="Custom";
     private RelativeLayout loader;
     private DrawerLayout drawerLayout;
     private View drawerView;
     private ListView listView;
     private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
-    private RecyclerView recyclerView;
-    FirebaseFirestore db;
+    CustomFragment customFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom);
-        findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+
 
         //맨 위에 툴바 적용
         Toolbar toolbar;
@@ -56,7 +55,7 @@ public class CustomActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //navigation menu
-        drawerLayout=(DrawerLayout)findViewById(R.id.main);
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawerrecipe);
         drawerView=(View)findViewById(R.id.drawer);
         listView = (ListView) findViewById (R.id. list);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
@@ -82,39 +81,12 @@ public class CustomActivity extends AppCompatActivity {
             }
         });
 
-         recyclerView=findViewById(R.id.customrecycle);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(CustomActivity.this));
-
-        db = FirebaseFirestore.getInstance();
-        final ArrayList<AddInfo> CustomList=new ArrayList<>();
-        db.collection("customs").orderBy("title", Query.Direction.DESCENDING).get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                CustomList.add(new AddInfo(
-                                        document.getData().get("title").toString(),
-                                        document.getData().get("contents").toString(),
-                                        document.getData().get("publisher").toString()));
-                                Log.d(TAG, "Error"+document.getData().get("title").toString());
-                            }
-                            RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomActivity.this, CustomList);
-                            recyclerView.setAdapter(mAdapter);
-                        } else {
-                        }
-                    }
-                });
+        customFragment=new CustomFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, customFragment).commit();
 
         loader=findViewById(R.id.loader);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
 
     //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
     @Override
@@ -127,21 +99,7 @@ public class CustomActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()){
-                case R.id.floatingActionButton:
-                    addCustomActivity();
-                    break;
-            }
-        }
-    };
 
-    private void addCustomActivity() {
-        Intent intent=new Intent(this, AddCustomActivity.class);
-        startActivity(intent);
-    }
     //로그인 activity로 이동
     private void startLoginActivity() {
         Intent intent=new Intent(this, loginActivity.class);

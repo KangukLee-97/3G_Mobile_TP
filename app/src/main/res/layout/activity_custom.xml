@@ -6,10 +6,6 @@
     android:id="@+id/drawerrecipe"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,30 +14,21 @@
                 layout="@layout/toolbar"
                 android:id="@+id/toolbar"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/customrecycle"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:id="@+id/container">
+
+            </FrameLayout>
 
         </LinearLayout>
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:clickable="true"
-            android:src="@drawable/ic_baseline_add_24" />
-        <include
-            layout="@layout/loader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            />
-
-    </RelativeLayout>
-
     <include layout="@layout/drawer"/>
+
+    <include
+        layout="@layout/loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
 </androidx.drawerlayout.widget.DrawerLayout>

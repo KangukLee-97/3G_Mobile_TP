@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cocktail.R;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeViewHolder> {
     private ArrayList<AddInfo> mDataset;
-    private Activity activity;
+    private Fragment fragment;
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public CardView cardView;
@@ -27,9 +28,9 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
         }
     }
 
-    public RecipeAdpater(Activity activity, ArrayList<AddInfo> customList) {
+    public RecipeAdpater(Fragment fragment, ArrayList<AddInfo> customList) {
         mDataset = customList;
-        this.activity=activity;
+        this.fragment=fragment;
     }
 
     @Override
