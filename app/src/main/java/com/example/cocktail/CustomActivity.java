@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -34,11 +35,12 @@ import java.util.ArrayList;
 public class CustomActivity extends AppCompatActivity {
     private static final String TAG="Custom";
     private RelativeLayout loader;
-    private FirebaseAuth mAuth;
     private DrawerLayout drawerLayout;
     private View drawerView;
     private ListView listView;
     private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
+    private RecyclerView recyclerView;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +82,13 @@ public class CustomActivity extends AppCompatActivity {
             }
         });
 
+         recyclerView=findViewById(R.id.customrecycle);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(CustomActivity.this));
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+        db = FirebaseFirestore.getInstance();
         final ArrayList<AddInfo> CustomList=new ArrayList<>();
-        db.collection("customs")
-                .get()
+        db.collection("customs").orderBy("title", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -98,10 +100,6 @@ public class CustomActivity extends AppCompatActivity {
                                         document.getData().get("publisher").toString()));
                                 Log.d(TAG, "Error"+document.getData().get("title").toString());
                             }
-                            RecyclerView recyclerView=findViewById(R.id.customrecycle);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(CustomActivity.this));
-
                             RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomActivity.this, CustomList);
                             recyclerView.setAdapter(mAdapter);
                         } else {
@@ -110,6 +108,12 @@ public class CustomActivity extends AppCompatActivity {
                 });
 
         loader=findViewById(R.id.loader);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
