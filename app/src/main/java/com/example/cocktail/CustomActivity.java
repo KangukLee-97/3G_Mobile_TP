@@ -46,7 +46,6 @@ public class CustomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom);
 
-
         //맨 위에 툴바 적용
         Toolbar toolbar;
         toolbar=(Toolbar)findViewById(R.id.toolbar);
