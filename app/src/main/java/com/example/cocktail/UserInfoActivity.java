@@ -53,6 +53,9 @@ public class UserInfoActivity extends AppCompatActivity {
                     case "마이페이지":
                         startUserInfoActivity();
                         break;
+                    case "커스텀 레시피":
+                        startCustomActivity();
+                        break;
                     case "로그아웃":
                         FirebaseAuth.getInstance().signOut();
                         startLoginActivity();
@@ -105,6 +108,11 @@ public class UserInfoActivity extends AppCompatActivity {
     //recipe activity로 이동
     private void startUserInfoActivity() {
         Intent intent=new Intent(this, UserInfoActivity.class);
+        startActivity(intent);
+    }
+    //custom recipe activity로 이동
+    private void startCustomActivity() {
+        Intent intent=new Intent(this, CustomActivity.class);
         startActivity(intent);
     }
     }
