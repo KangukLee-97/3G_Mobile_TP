@@ -1,6 +1,7 @@
 package com.example.cocktail.adapter;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -14,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail.CustomRecipeActivity;
 import com.example.cocktail.R;
 import com.example.cocktail.View.AddInfo;
 
@@ -25,7 +27,6 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public CardView cardView;
-        public TextView textView;
 
         public RecipeViewHolder(CardView v) {
             super(v);
@@ -42,14 +43,6 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
     public RecipeAdpater.RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe,parent, false);
         final RecipeViewHolder vh=new RecipeViewHolder(cardView);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent=new Intent(v.getContext(), PostActivity.class);
-//                intent.putExtra("addInfo", (Serializable) mDataset.get(vh.getAdapterPosition()));
-//                v.getContext().startActivity(intent);
-            }
-        });
         return vh;
     }
 
@@ -63,6 +56,16 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
         textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcohol());
         ImageView imageView=cardView.findViewById(R.id.imageView);
         imageView.setImageBitmap(StringToBitmap(mDataset.get(position).getImage()));
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context=v.getContext();
+                Intent intent=new Intent(v.getContext(), CustomRecipeActivity.class);
+                intent.putExtra("Title", mDataset.get(position).getTitle());
+                fragment.startActivity(intent);
+            }
+        });
     }
 
     public static Bitmap StringToBitmap(String encodedString) {

@@ -71,7 +71,6 @@ public class CustomFragment extends Fragment {
                                         document.getData().get("color").toString(),
                                         document.getData().get("link").toString(),
                                         document.getData().get("publisher").toString()));
-                                Log.d(TAG, "Error"+document.getData().get("title").toString());
                             }
                             RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList);
                             recyclerView.setAdapter(mAdapter);
@@ -109,7 +108,6 @@ public class CustomFragment extends Fragment {
                                                     document.getData().get("color").toString(),
                                                     document.getData().get("link").toString(),
                                                     document.getData().get("publisher").toString()));
-                                            Log.d(TAG, "Error"+document.getData().get("title").toString());
                                         }
                                         RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList);
                                         recyclerView.setAdapter(mAdapter);

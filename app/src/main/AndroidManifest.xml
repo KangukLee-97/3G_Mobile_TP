@@ -22,6 +22,7 @@
         <activity android:name=".UserInfoActivity"/>
         <activity android:name=".CustomActivity"/>
         <activity android:name=".AddCustomActivity"/>
+        <activity android:name=".CustomRecipeActivity"/>
     </application>
 
 </manifest>
