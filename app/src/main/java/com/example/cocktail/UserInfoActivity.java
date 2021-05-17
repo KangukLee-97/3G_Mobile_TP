@@ -92,6 +92,14 @@ public class UserInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(this, MainActivity.class);
+        //Main activity에서 뒤로가기를 눌렀을 시 앱 이 종료되도록 여태까지 stack에 쌓였던 activity를 없앰
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
     //로그인 activity로 이동
     private void startLoginActivity() {
