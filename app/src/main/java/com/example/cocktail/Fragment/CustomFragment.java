@@ -47,7 +47,7 @@ public class CustomFragment extends Fragment {
         return rootView;
     }
 
-    @Override
+ @Override
     public void onResume() {
         super.onResume();
 
@@ -62,6 +62,14 @@ public class CustomFragment extends Fragment {
                                 CustomList.add(new AddInfo(
                                         document.getData().get("title").toString(),
                                         document.getData().get("contents").toString(),
+                                        document.getData().get("image").toString(),
+                                        document.getData().get("taste").toString(),
+                                        document.getData().get("alcohol").toString(),
+                                        document.getData().get("base").toString(),
+                                        document.getData().get("tech").toString(),
+                                        document.getData().get("glass").toString(),
+                                        document.getData().get("color").toString(),
+                                        document.getData().get("link").toString(),
                                         document.getData().get("publisher").toString()));
                                 Log.d(TAG, "Error"+document.getData().get("title").toString());
                             }
@@ -92,6 +100,14 @@ public class CustomFragment extends Fragment {
                                             CustomList.add(new AddInfo(
                                                     document.getData().get("title").toString(),
                                                     document.getData().get("contents").toString(),
+                                                    document.getData().get("image").toString(),
+                                                    document.getData().get("taste").toString(),
+                                                    document.getData().get("alcohol").toString(),
+                                                    document.getData().get("base").toString(),
+                                                    document.getData().get("tech").toString(),
+                                                    document.getData().get("glass").toString(),
+                                                    document.getData().get("color").toString(),
+                                                    document.getData().get("link").toString(),
                                                     document.getData().get("publisher").toString()));
                                             Log.d(TAG, "Error"+document.getData().get("title").toString());
                                         }
