@@ -33,18 +33,42 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
         this.fragment=fragment;
     }
 
-    @Override
+      @Override
     public RecipeAdpater.RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe,parent, false);
         final RecipeViewHolder vh=new RecipeViewHolder(cardView);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent=new Intent(v.getContext(), PostActivity.class);
+//                intent.putExtra("addInfo", (Serializable) mDataset.get(vh.getAdapterPosition()));
+//                v.getContext().startActivity(intent);
+            }
+        });
         return vh;
     }
 
     @Override
     public void onBindViewHolder(final RecipeViewHolder holder, int position) {
         CardView cardView=holder.cardView;
-    TextView textView=cardView.findViewById(R.id.texts);
-    textView.setText(mDataset.get(position).getTitle());
+        TextView textView1=cardView.findViewById(R.id.texts);
+        textView1.setText(mDataset.get(position).getTitle());
+
+        TextView textView2=cardView.findViewById(R.id.textTag);
+        textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcohol());
+        ImageView imageView=cardView.findViewById(R.id.imageView);
+        imageView.setImageBitmap(StringToBitmap(mDataset.get(position).getImage()));
+    }
+
+    public static Bitmap StringToBitmap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     @Override
