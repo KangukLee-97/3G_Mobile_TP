@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CustomRecipeActivity extends AppCompatActivity {
     TextView gettitle;
     ImageView getimage;
-    TextView getcontent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,15 +22,11 @@ public class CustomRecipeActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String title=intent.getStringExtra("Title");
         String image=intent.getStringExtra("Image");
-        String content=intent.getStringExtra("Content");
 
         gettitle=(TextView)findViewById(R.id.titleget);
         getimage=(ImageView) findViewById(R.id.imageget);
-        getcontent=(TextView)findViewById(R.id.contentget);
-
         gettitle.setText(title);
         getimage.setImageBitmap(StringToBitmap(image));
-        getcontent.setText(content);
     }
     public static Bitmap StringToBitmap(String encodedString) {
         try {

@@ -64,8 +64,7 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
                 Intent intent=new Intent(v.getContext(), CustomRecipeActivity.class);
                 intent.putExtra("Title", mDataset.get(position).getTitle());
                 intent.putExtra("Image", mDataset.get(position).getImage());
-                intent.putExtra("Content", mDataset.get(position).getContents());
-                fragment.startActivity(intent);
+                context.startActivity(intent);
             }
         });
     }
