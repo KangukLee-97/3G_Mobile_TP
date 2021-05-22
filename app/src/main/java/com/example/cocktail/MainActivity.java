@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnrecipe).setOnClickListener(onClickListener);
         findViewById(R.id.btnmypage).setOnClickListener(onClickListener);
         findViewById(R.id.btncustom).setOnClickListener(onClickListener);
+        findViewById(R.id.btntest).setOnClickListener(onClickListener);
 
         //navigation menu
         drawerLayout=(DrawerLayout)findViewById(R.id.main);
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case "커스텀 레시피":
                         startCustomActivity();
+                        break;
+                    case "주조기능사":
+                        startTestActivity();
                         break;
                     case "로그아웃":
                         FirebaseAuth.getInstance().signOut();
@@ -102,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.btncustom:
                     startCustomActivity();
                     break;
+                case R.id.btntest:
+                    startTestActivity();
+                    break;
             }
         }
     };
@@ -127,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
     //custom recipe activity로 이동
     private void startCustomActivity() {
         Intent intent=new Intent(this, CustomActivity.class);
+        startActivity(intent);
+    }
+
+    // test activity로 이동
+    private void startTestActivity() {
+        Intent intent = new Intent(this, testActivity.class);
         startActivity(intent);
     }
 }

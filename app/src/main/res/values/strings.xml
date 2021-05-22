@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name"></string>
+    <string name="question_before_desc">주조기능사 시험은 어렵습니다! 진행하시겠습니까?</string>
 </resources>
