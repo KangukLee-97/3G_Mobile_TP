@@ -25,6 +25,8 @@ public class UserInfoActivity extends AppCompatActivity {
     private View drawerView;
     private ListView list;
     private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
+    UserInfoFragment userInfoFragment;
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,8 @@ public class UserInfoActivity extends AppCompatActivity {
                     }
                 }
             });
+        userInfoFragment=new UserInfoFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, userInfoFragment).commit();
         }
 
     //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
