@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,11 +30,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class CustomRecipeActivity extends AppCompatActivity {
-    TextView gettitle;
-    ImageView getimage;
-    FirebaseFirestore db;
-    String image;
-    String title;
+    private TextView gettitle;
+    private ImageView getimage;
+    FirebaseFirestore data;
+    private String image;
+    private String title;
+    private static final String TAG="CustomRecipe";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +43,9 @@ public class CustomRecipeActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         title=intent.getStringExtra("Title");
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        db = FirebaseFirestore.getInstance();
-        db.collection("customs").whereEqualTo("title",title).get()
+        data = FirebaseFirestore.getInstance();
+        data.collection("customs").whereEqualTo("title",title).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -55,17 +53,17 @@ public class CustomRecipeActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 image=document.getData().get("image").toString();
                             }
+                            getimage=(ImageView)findViewById(R.id.imageget);
+                            getimage.setImageBitmap(StringToBitmap(image));
+                        }else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
 
-        System.out.println("string:"+image);
         gettitle=(TextView)findViewById(R.id.titleget);
         gettitle.setText(title);
-        getimage=(ImageView)findViewById(R.id.imageget);
-        getimage.setImageBitmap(StringToBitmap(image));
     }
-
 
     public static Bitmap StringToBitmap(String encodedString) {
         try {
