@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/loginpage">
 
     <TextView
         android:id="@+id/textLog"
@@ -11,8 +12,9 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="로그인"
-        android:textSize="30dp"
+        android:text="MY Cocktail"
+        android:textColor="@color/white"
+        android:textSize="35dp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -27,7 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="YOUR EMAIL"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:inputType="textPersonName" />
 
         <EditText
@@ -36,12 +41,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="PASSWORD"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:inputType="textPassword" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
@@ -50,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="30dp"
-                android:background="#2342B3"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"
                 android:gravity="center"
-                android:text="로그인"
-                app:backgroundTint="#3F51B5" />
+                android:text="로그인"/>
 
             <Button
                 android:id="@+id/btnSign"
@@ -62,10 +70,10 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:background="#2342B3"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"
                 android:gravity="center"
-                android:text="회원가입"
-                app:backgroundTint="#3F51B5" />
+                android:text="회원가입" />
 
         </LinearLayout>
 
