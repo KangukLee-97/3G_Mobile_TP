@@ -11,10 +11,11 @@ public class AddInfo {
     private String glass;
     private String color;
     private String link;
+    private int click;
     private String publisher;
 
     public AddInfo(String title, String contents, String image, String taste, String alcohol,
-                   String base, String tech, String glass, String color, String link, String publisher){
+                   String base, String tech, String glass, String color, String link, int click, String publisher){
         this.title = title;
         this.contents = contents;
         this.image = image;
@@ -25,6 +26,8 @@ public class AddInfo {
         this.glass = glass;
         this.color = color;
         this.link = link;
+        this.click = click;
+//        this.uid = uid;
         this.publisher = publisher;
     }
 
@@ -94,6 +97,13 @@ public class AddInfo {
     }
     public void setLink(String link){
         this.link = link;
+    }
+
+    public int getClick(){
+        return this.click;
+    }
+    public void setClick(int link){
+        this.click = click;
     }
 
     public String getPublisher(){
