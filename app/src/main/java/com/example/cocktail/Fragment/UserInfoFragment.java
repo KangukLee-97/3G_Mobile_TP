@@ -51,6 +51,7 @@ public class UserInfoFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         final ArrayList<AddInfo> CustomList=new ArrayList<>();
+        final ArrayList uid = new ArrayList();
         db.collection("customs").whereEqualTo("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -68,10 +69,12 @@ public class UserInfoFragment extends Fragment {
                                         document.getData().get("glass").toString(),
                                         document.getData().get("color").toString(),
                                         document.getData().get("link").toString(),
+                                        Integer.parseInt(document.getData().get("click").toString()),
                                         document.getData().get("publisher").toString()));
                                 Log.d(TAG, "Error"+document.getData().get("title").toString());
+                                uid.add(document.getId());
                             }
-                            RecyclerView.Adapter mAdapter=new RecipeAdpater(UserInfoFragment.this, CustomList);
+                            RecyclerView.Adapter mAdapter=new RecipeAdpater(UserInfoFragment.this, CustomList, uid);
                             recyclerView.setAdapter(mAdapter);
                         } else {
                         }
