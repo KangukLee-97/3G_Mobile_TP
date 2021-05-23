@@ -59,6 +59,13 @@
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:text="랭킹 부분"/>
+        
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/container_rank">
+
+        </FrameLayout>
 
     </LinearLayout>
     <include layout="@layout/drawer"/>
