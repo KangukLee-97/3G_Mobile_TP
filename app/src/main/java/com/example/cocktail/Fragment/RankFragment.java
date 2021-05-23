@@ -53,7 +53,7 @@ public class RankFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         final ArrayList<AddInfo> CustomList=new ArrayList<>();
         final ArrayList uid = new ArrayList();
-        db.collection("customs").orderBy("click", Query.Direction.DESCENDING).get()
+        db.collection("customs").orderBy("click", Query.Direction.DESCENDING).limit(3).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
