@@ -70,6 +70,7 @@ public class AddCustomActivity extends AppCompatActivity {
         String glass=((EditText)findViewById(R.id.customGlass)).getText().toString();
         String color=((EditText)findViewById(R.id.customColor)).getText().toString();
         String link=((EditText)findViewById(R.id.customVideoLink)).getText().toString();
+        int click = 0;
 
         if(simage == "ok") {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
