@@ -23,6 +23,7 @@
         <activity android:name=".CustomActivity"/>
         <activity android:name=".AddCustomActivity"/>
         <activity android:name=".CustomRecipeActivity"/>
+        <activity android:name=".testActivity"/>
     </application>
 
 </manifest>
