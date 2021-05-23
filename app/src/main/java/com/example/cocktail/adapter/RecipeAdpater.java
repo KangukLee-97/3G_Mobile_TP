@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cocktail.CustomRecipeActivity;
 import com.example.cocktail.R;
 import com.example.cocktail.View.AddInfo;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeViewHolder> {
     private ArrayList<AddInfo> mDataset;
     private Fragment fragment;
+    private ArrayList id;
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         public CardView cardView;
@@ -34,9 +37,10 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
         }
     }
 
-    public RecipeAdpater(Fragment fragment, ArrayList<AddInfo> customList) {
+    public RecipeAdpater(Fragment fragment, ArrayList<AddInfo> customList, ArrayList uid) {
         mDataset = customList;
         this.fragment=fragment;
+        id = uid;
     }
 
       @Override
@@ -60,6 +64,9 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                int click = mDataset.get(position).getClick() + 1;
+                db.collection("customs").document(String.valueOf(id.get(position))).update("click", click);
                 Context context=v.getContext();
                 Intent intent=new Intent(v.getContext(), CustomRecipeActivity.class);
                 intent.putExtra("Title", mDataset.get(position).getTitle());
