@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.cocktail.Fragment.RankFragment;
+import com.example.cocktail.Fragment.UserInfoFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private View drawerView;
     private ListView listView;
     private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
+    RankFragment rankFragment;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -78,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        
+        rankFragment=new RankFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_rank, rankFragment).commit();
 
     }//onCreate 끝
 
