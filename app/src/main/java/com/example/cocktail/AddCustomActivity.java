@@ -83,7 +83,7 @@ public class AddCustomActivity extends AppCompatActivity {
         if(name.length() > 0 && contents.length() > 0)
         {
             user = FirebaseAuth.getInstance().getCurrentUser();
-            AddInfo addInfo = new AddInfo(name, contents, simage, taste, alcohol, base, tech, glass, color, link, user.getUid());
+            AddInfo addInfo = new AddInfo(name, contents, simage, taste, alcohol, base, tech, glass, color, link, click, user.getUid());
             uploader(addInfo);
 
         }else{
