@@ -53,6 +53,7 @@ public class CustomFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         final ArrayList<AddInfo> CustomList=new ArrayList<>();
+        final ArrayList uid = new ArrayList();
         db.collection("customs").orderBy("title", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -70,9 +71,11 @@ public class CustomFragment extends Fragment {
                                         document.getData().get("glass").toString(),
                                         document.getData().get("color").toString(),
                                         document.getData().get("link").toString(),
+                                        Integer.parseInt(document.getData().get("click").toString()),
                                         document.getData().get("publisher").toString()));
+                                uid.add(document.getId());
                             }
-                            RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList);
+                            RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList, uid);
                             recyclerView.setAdapter(mAdapter);
                         } else {
                         }
@@ -90,6 +93,7 @@ public class CustomFragment extends Fragment {
                 case R.id.btnsearch:
                     db = FirebaseFirestore.getInstance();
                     final ArrayList<AddInfo> CustomList=new ArrayList<>();
+                    final ArrayList uid = new ArrayList();
                     db.collection("customs").orderBy("title", Query.Direction.ASCENDING).get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
@@ -107,9 +111,11 @@ public class CustomFragment extends Fragment {
                                                     document.getData().get("glass").toString(),
                                                     document.getData().get("color").toString(),
                                                     document.getData().get("link").toString(),
+                                                    Integer.parseInt(document.getData().get("click").toString()),
                                                     document.getData().get("publisher").toString()));
+                                            uid.add(document.getId());
                                         }
-                                        RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList);
+                                        RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList, uid);
                                         recyclerView.setAdapter(mAdapter);
                                     } else {
                                     }
