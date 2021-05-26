@@ -64,12 +64,22 @@ public class AddCustomActivity extends AppCompatActivity {
         String name=((EditText)findViewById(R.id.customName)).getText().toString();
         String contents=((EditText)findViewById(R.id.customContent)).getText().toString();
         String taste=((EditText)findViewById(R.id.customTaste)).getText().toString();
-        String alcohol=((EditText)findViewById(R.id.customAlcohol)).getText().toString();
-        String base=((EditText)findViewById(R.id.customBase)).getText().toString();
-        String tech=((EditText)findViewById(R.id.customTech)).getText().toString();
-        String glass=((EditText)findViewById(R.id.customGlass)).getText().toString();
-        String color=((EditText)findViewById(R.id.customColor)).getText().toString();
-        String link=((EditText)findViewById(R.id.customVideoLink)).getText().toString();
+        String alcoholicity=((EditText)findViewById(R.id.customAlcohol)).getText().toString();
+        String Technique=((EditText)findViewById(R.id.customTech)).getText().toString();
+        String Glass=((EditText)findViewById(R.id.customGlass)).getText().toString();
+        String Color=((EditText)findViewById(R.id.customColor)).getText().toString();
+        String VideoLink=((EditText)findViewById(R.id.customVideoLink)).getText().toString();
+        String Garnish = "";
+        String Ingredients = "";
+        String Ingredients2 = "";
+        String Ingredients3 = "";
+        String Ingredients4 = "";
+        String Ingredients5 = "";
+        String Ingredients6 = "";
+        String Ingredients7 = "";
+        String Main_Alcohol = "";
+        String TPO = "No";
+        String Tag = "";
         int click = 0;
 
         if(simage == "ok") {
@@ -83,7 +93,10 @@ public class AddCustomActivity extends AppCompatActivity {
         if(name.length() > 0 && contents.length() > 0)
         {
             user = FirebaseAuth.getInstance().getCurrentUser();
-            AddInfo addInfo = new AddInfo(name, contents, simage, taste, alcohol, base, tech, glass, color, link, click, user.getUid());
+            AddInfo addInfo = new AddInfo(name, contents,  simage, taste, alcoholicity,
+                    Technique, Glass, Color, VideoLink, Garnish, Ingredients,
+                    Ingredients2, Ingredients3, Ingredients4, Ingredients5, Ingredients6,
+                    Ingredients7, Main_Alcohol, TPO, Tag, click, user.getUid());
             uploader(addInfo);
 
         }else{
