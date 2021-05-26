@@ -13,14 +13,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bar_background">
+
         <include
             layout="@layout/toolbar"
             android:id="@+id/toolbar"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:text="검색 부분"/>
+            android:layout_height="80dp"/>
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -32,40 +37,62 @@
 
             <Button
                 android:id="@+id/btnrecipe"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="40dp"
                 android:text="레시피" />
 
             <Button
                 android:id="@+id/btncustom"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"
                 android:text="커스텀 레시피" />
 
             <Button
                 android:id="@+id/btnmypage"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"
                 android:text="마이페이지" />
 
             <Button
                 android:id="@+id/btntest"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"
                 android:text="주조기능사" />
         </GridLayout>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:text="랭킹 부분"/>
-        
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/container_rank">
+            android:orientation="vertical"
+            android:background="@drawable/dark_background">
 
-        </FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="오늘의 칵테일"
+                android:textColor="@color/white"
+                android:gravity="center|top"
+                android:background="@drawable/list2"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/container_rank">
+
+            </FrameLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
     <include layout="@layout/drawer"/>
