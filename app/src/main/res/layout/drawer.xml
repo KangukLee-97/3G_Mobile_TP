@@ -6,11 +6,11 @@
     android:layout_gravity="start"
     android:orientation="vertical"
     android:id="@+id/drawer"
-    android:background="#4EB6A2">
+    android:background="#00313c">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/list"/>
+        android:id="@+id/list" />
 
 </LinearLayout>
