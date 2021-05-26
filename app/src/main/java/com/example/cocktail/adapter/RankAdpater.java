@@ -50,17 +50,17 @@ public class RankAdpater extends RecyclerView.Adapter<RankAdpater.RecipeViewHold
         return vh;
     }
 
-    @Override
+   @Override
     public void onBindViewHolder(final RecipeViewHolder holder, int position) {
         CardView cardView=holder.cardView;
         TextView rank = cardView.findViewById(R.id.rank);
         rank.setText(String.valueOf(position + 1));
 
         TextView textView1=cardView.findViewById(R.id.texts);
-        textView1.setText(mDataset.get(position).getTitle());
+        textView1.setText(mDataset.get(position).getName());
 
         TextView textView2=cardView.findViewById(R.id.textTag);
-        textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcohol());
+        textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcoholicity());
         ImageView imageView=cardView.findViewById(R.id.imageView);
         imageView.setImageBitmap(StringToBitmap(mDataset.get(position).getImage()));
 
@@ -72,7 +72,7 @@ public class RankAdpater extends RecyclerView.Adapter<RankAdpater.RecipeViewHold
                 db.collection("customs").document(String.valueOf(id.get(position))).update("click", click);
                 Context context=v.getContext();
                 Intent intent=new Intent(v.getContext(), CustomRecipeActivity.class);
-                intent.putExtra("Title", mDataset.get(position).getTitle());
+                intent.putExtra("name", mDataset.get(position).getName());
 //                intent.putExtra("Image", mDataset.get(position).getImage());
                 context.startActivity(intent);
             }
