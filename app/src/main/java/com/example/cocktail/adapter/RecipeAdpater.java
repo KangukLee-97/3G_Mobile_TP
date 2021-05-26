@@ -54,10 +54,10 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
     public void onBindViewHolder(final RecipeViewHolder holder, int position) {
         CardView cardView=holder.cardView;
         TextView textView1=cardView.findViewById(R.id.texts);
-        textView1.setText(mDataset.get(position).getTitle());
+        textView1.setText(mDataset.get(position).getName());
 
         TextView textView2=cardView.findViewById(R.id.textTag);
-        textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcohol());
+        textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcoholicity());
         ImageView imageView=cardView.findViewById(R.id.imageView);
         imageView.setImageBitmap(StringToBitmap(mDataset.get(position).getImage()));
 
@@ -69,7 +69,7 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
                 db.collection("customs").document(String.valueOf(id.get(position))).update("click", click);
                 Context context=v.getContext();
                 Intent intent=new Intent(v.getContext(), CustomRecipeActivity.class);
-                intent.putExtra("Title", mDataset.get(position).getTitle());
+                intent.putExtra("name", mDataset.get(position).getName());
                 context.startActivity(intent);
             }
         });
