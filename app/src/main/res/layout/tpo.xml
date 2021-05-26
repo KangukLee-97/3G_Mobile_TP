@@ -24,13 +24,14 @@
     <ImageView
         android:id="@+id/Champagne"
         android:layout_width="180dp"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="164dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/Shot"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/Cocktailstemmed"
         app:layout_constraintStart_toStartOf="@+id/Cocktailstemmed"
-        app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Champagne" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredient"
+        app:srcCompat="@drawable/champagne" />
 
     <ImageView
         android:id="@+id/Cocktailstemmed"
@@ -41,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Collins"
         app:layout_constraintStart_toStartOf="@+id/Collins"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Cocktailstemmed" />
+        app:srcCompat="@drawable/cocktailstemmed" />
 
     <ImageView
         android:id="@+id/Collins"
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Hurricane"
         app:layout_constraintStart_toStartOf="@+id/Hurricane"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Collins" />
+        app:srcCompat="@drawable/collins" />
 
     <ImageView
         android:id="@+id/Hurricane"
@@ -63,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Margarita"
         app:layout_constraintStart_toStartOf="@+id/Margarita"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Hurricane" />
+        app:srcCompat="@drawable/hurricane" />
 
     <ImageView
         android:id="@+id/Margarita"
@@ -74,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Martini"
         app:layout_constraintStart_toStartOf="@+id/Martini"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Margarita" />
+        app:srcCompat="@drawable/margarita" />
 
     <ImageView
         android:id="@+id/Martini"
@@ -85,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="@+id/OldFashioned"
         app:layout_constraintStart_toStartOf="@+id/OldFashioned"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Martini" />
+        app:srcCompat="@drawable/martini" />
 
     <ImageView
         android:id="@+id/OldFashioned"
@@ -96,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Sherry"
         app:layout_constraintStart_toStartOf="@+id/Sherry"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/OldFashioned" />
+        app:srcCompat="@drawable/oldfashioned" />
 
     <ImageView
         android:id="@+id/Sherry"
@@ -107,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Snifter"
         app:layout_constraintStart_toStartOf="@+id/Snifter"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Sherry" />
+        app:srcCompat="@drawable/sherry" />
 
     <ImageView
         android:id="@+id/Shot"
@@ -118,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/Champagne"
         app:layout_constraintStart_toStartOf="@+id/Champagne"
-        app:srcCompat="@drawable/Shot" />
+        app:srcCompat="@drawable/shot" />
 
     <ImageView
         android:id="@+id/Snifter"
@@ -129,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Sour"
         app:layout_constraintStart_toStartOf="@+id/Sour"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Snifter" />
+        app:srcCompat="@drawable/snifter" />
 
     <ImageView
         android:id="@+id/Sour"
@@ -140,7 +141,7 @@
         app:layout_constraintEnd_toEndOf="@+id/StemedLiqueur"
         app:layout_constraintStart_toStartOf="@+id/StemedLiqueur"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/Sour" />
+        app:srcCompat="@drawable/sour" />
 
     <ImageView
         android:id="@+id/StemedLiqueur"
@@ -151,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="@+id/footed"
         app:layout_constraintStart_toStartOf="@+id/footed"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/StemedLiqueur" />
+        app:srcCompat="@drawable/stemedliqueur" />
 
     <ImageView
         android:id="@+id/footed"
@@ -186,6 +187,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/Shot"
         app:srcCompat="@drawable/wine" />
+
+    //선택된 글래스에 따라 맞게 visible 값으로 바꿔주시면 될듯 합니다
+
+    <ImageView
+        android:id="@+id/ingredient"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="356dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="260dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/tpo_desk"
+        app:layout_constraintEnd_toEndOf="@+id/tpo_desk"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+    // 이거 이미지 setImageBitmap으로 이미지를 선택된 재료 이미지로 변경해주시면 될것 같고
+    // layout_marginEnd 조절하셔서 ex) 250 130 30  각 스킬에 따라 빌드,플로팅이면 250에서 따라서
+    // 글래스에 들어가게, 쉐이킹이면 130에서 따라서 쉐이커에 들어가게, stir면 30에서 따라서
+    // 믹스 글래스에 들어가게 하시면 될것 같습니다
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
