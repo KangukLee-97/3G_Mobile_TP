@@ -50,7 +50,7 @@ public class RankFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        db = FirebaseFirestore.getInstance();
+         db = FirebaseFirestore.getInstance();
         final ArrayList<AddInfo> CustomList=new ArrayList<>();
         final ArrayList uid = new ArrayList();
         db.collection("customs").orderBy("click", Query.Direction.DESCENDING).limit(3).get()
@@ -60,19 +60,29 @@ public class RankFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 CustomList.add(new AddInfo(
-                                        document.getData().get("title").toString(),
-                                        document.getData().get("contents").toString(),
+                                        document.getData().get("name").toString(),
+                                        document.getData().get("content").toString(),
                                         document.getData().get("image").toString(),
                                         document.getData().get("taste").toString(),
-                                        document.getData().get("alcohol").toString(),
-                                        document.getData().get("base").toString(),
-                                        document.getData().get("tech").toString(),
+                                        document.getData().get("alcoholicity").toString(),
+                                        document.getData().get("technique").toString(),
                                         document.getData().get("glass").toString(),
                                         document.getData().get("color").toString(),
                                         document.getData().get("link").toString(),
+                                        document.getData().get("garnish").toString(),
+                                        document.getData().get("ingredients").toString(),
+                                        document.getData().get("ingredients2").toString(),
+                                        document.getData().get("ingredients3").toString(),
+                                        document.getData().get("ingredients4").toString(),
+                                        document.getData().get("ingredients5").toString(),
+                                        document.getData().get("ingredients6").toString(),
+                                        document.getData().get("ingredients7").toString(),
+                                        document.getData().get("main_Alcohol").toString(),
+                                        document.getData().get("tpo").toString(),
+                                        document.getData().get("tag").toString(),
                                         Integer.parseInt(document.getData().get("click").toString()),
                                         document.getData().get("publisher").toString()));
-                                Log.d(TAG, "Error"+document.getData().get("title").toString());
+                                Log.d(TAG, "Error"+document.getData().get("name").toString());
                                 uid.add(document.getId());
                             }
                             RecyclerView.Adapter mAdapter=new RankAdpater(RankFragment.this, CustomList, uid);
