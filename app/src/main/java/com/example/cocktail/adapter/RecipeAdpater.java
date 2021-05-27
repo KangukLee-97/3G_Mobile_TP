@@ -55,9 +55,6 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
         CardView cardView=holder.cardView;
         TextView textView1=cardView.findViewById(R.id.texts);
         textView1.setText(mDataset.get(position).getName());
-
-        TextView textView2=cardView.findViewById(R.id.textTag);
-        textView2.setText("taste : " + mDataset.get(position).getTaste() + "alcohol : " + mDataset.get(position).getAlcoholicity());
         ImageView imageView=cardView.findViewById(R.id.imageView);
         imageView.setImageBitmap(StringToBitmap(mDataset.get(position).getImage()));
 
