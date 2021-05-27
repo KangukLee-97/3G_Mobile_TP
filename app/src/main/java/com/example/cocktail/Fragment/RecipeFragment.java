@@ -48,13 +48,13 @@ public class RecipeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_custom, container, false);
+        ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_recipe, container, false);
         final Spinner spin1=(Spinner)rootView.findViewById(R.id.spinner1);
         final Spinner spin2=(Spinner)rootView.findViewById(R.id.spinner2);
         rootView.findViewById(R.id.btnsearch).setOnClickListener(onClickListener);
         editText=(EditText)rootView.findViewById(R.id.search);
 
-        adspin1=ArrayAdapter.createFromResource(getContext(), R.array.spinner_do, R.layout.spinnertext);
+        adspin1=ArrayAdapter.createFromResource(getContext(), R.array.spinner_do2, R.layout.spinnertext);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin1.setAdapter(adspin1);
 

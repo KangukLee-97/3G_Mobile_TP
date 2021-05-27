@@ -46,7 +46,7 @@ public class CustomFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_recipe, container, false);
+        ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_custom, container, false);
         rootView.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
         final Spinner spin1=(Spinner)rootView.findViewById(R.id.spinner1);
         final Spinner spin2=(Spinner)rootView.findViewById(R.id.spinner2);

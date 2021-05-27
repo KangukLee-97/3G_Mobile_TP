@@ -13,6 +13,14 @@
         <item>technique</item>
     </string-array>
 
+    <string-array name="spinner_do2">
+        <item>Glass</item>
+        <item>Color</item>
+        <item>Taste(Sweet)</item>
+        <item>Click</item>
+        <item>Technique</item>
+    </string-array>
+
     <string-array name="spinner_do_taste">
         <item>1</item>
         <item>2</item>
