@@ -2,12 +2,15 @@ package com.example.cocktail.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Space;
 import android.widget.Spinner;
 
@@ -38,6 +41,10 @@ public class CustomFragment extends Fragment {
     ArrayAdapter<CharSequence> adspin1, adspin2;
     String choice1="";
     String choice2="";
+    private EditText editText;
+    private ArrayList<AddInfo> CustomList=new ArrayList<>();
+    private ArrayList<AddInfo> FilterdList=new ArrayList<>();
+    private ArrayList uid = new ArrayList();
 
     @Nullable
     @Override
@@ -47,6 +54,7 @@ public class CustomFragment extends Fragment {
         final Spinner spin1=(Spinner)rootView.findViewById(R.id.spinner1);
         final Spinner spin2=(Spinner)rootView.findViewById(R.id.spinner2);
         rootView.findViewById(R.id.btnsearch).setOnClickListener(onClickListener);
+        editText=(EditText)rootView.findViewById(R.id.search);
 
         adspin1=ArrayAdapter.createFromResource(getContext(), R.array.spinner_do, R.layout.spinnertext);
         adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -80,7 +88,23 @@ public class CustomFragment extends Fragment {
 
             }
         });
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String searchText=editText.getText().toString();
+                serachFilter(searchText);
+            }
+        });
 
         recyclerView= rootView.findViewById(R.id.customrecycle);
         recyclerView.setHasFixedSize(true);
@@ -90,13 +114,12 @@ public class CustomFragment extends Fragment {
         return rootView;
     }
 
+
  @Override
     public void onResume() {
         super.onResume();
-
+        CustomList.clear();
         db = FirebaseFirestore.getInstance();
-        final ArrayList<AddInfo> CustomList=new ArrayList<>();
-        final ArrayList uid = new ArrayList();
         db.collection("customs").orderBy("name", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -136,6 +159,19 @@ public class CustomFragment extends Fragment {
                 });
     }
 
+    public void serachFilter(String searchText){
+        FilterdList.clear();
+        for(int i=0;i<CustomList.size();i++){
+            if(CustomList.get(i).getName().toLowerCase().contains(searchText.toLowerCase()) ||CustomList.get(i).getTag().toLowerCase().contains(searchText.toLowerCase())){
+                FilterdList.add(CustomList.get(i));
+            }
+        }
+        RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, FilterdList, uid);
+        recyclerView.setAdapter(mAdapter);
+
+    }
+
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -145,8 +181,7 @@ public class CustomFragment extends Fragment {
                     break;
                 case R.id.btnsearch:
                     db = FirebaseFirestore.getInstance();
-                    final ArrayList<AddInfo> CustomList=new ArrayList<>();
-                    final ArrayList uid = new ArrayList();
+                    CustomList.clear();
                     db.collection("customs").whereEqualTo(choice1,choice2).get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override

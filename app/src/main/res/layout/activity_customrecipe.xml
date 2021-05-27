@@ -50,7 +50,7 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"
+                            android:textSize="18dp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
@@ -59,7 +59,7 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"
+                            android:textSize="18dp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
@@ -69,7 +69,7 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"/>
+                            android:textSize="18dp"/>
 
                         <TextView
                             android:id="@+id/glassget"
@@ -78,7 +78,7 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"/>
+                            android:textSize="18dp"/>
 
                         <TextView
                             android:id="@+id/colorget"
@@ -87,7 +87,7 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"/>
+                            android:textSize="18dp"/>
 
                         <TextView
                             android:id="@+id/garnishget"
@@ -96,7 +96,7 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"/>
+                            android:textSize="18dp"/>
 
                         <TextView
                             android:id="@+id/Mainget"
@@ -105,18 +105,22 @@
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
-                            android:textSize="15dp"/>
+                            android:textSize="18dp"/>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <ImageView
                         android:background="@drawable/cocktailimage"
                         android:id="@+id/imageget"
-                        android:layout_width="170dp"
-                        android:layout_height="270dp"
-                        android:layout_gravity="bottom"
+                        android:layout_width="150dp"
+                        android:layout_height="280dp"
+                        android:layout_gravity="right"
                         android:padding="2dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginRight="20dp"/>
 
                 </LinearLayout>
 
@@ -136,7 +140,9 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="8dp"
                     android:textColor="@color/white"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:paddingTop="2dp"
+                    android:background="@drawable/cocktailimage"/>
 
                 <TextView
                     android:id="@+id/ingredient"
@@ -146,7 +152,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="8dp"
                     android:textColor="@color/white"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:background="@drawable/cocktailimage"/>
 
                 <TextView
                     android:id="@+id/linkget"
