@@ -41,6 +41,17 @@ import java.util.ArrayList;
 public class CustomRecipeActivity extends AppCompatActivity {
     private TextView gettitle;
     private ImageView getimage;
+    private TextView getcontent;
+    private TextView gettaste;
+    private TextView getalcoholicity;
+    private TextView gettechnique;
+    private TextView getglass;
+    private TextView getcolor;
+    private TextView getlink;
+    private TextView getgarnish;
+    private TextView getmain_Alcohol;
+    private TextView getingredients;
+
     FirebaseFirestore data;
     private String image;
     private String title;
@@ -92,7 +103,7 @@ public class CustomRecipeActivity extends AppCompatActivity {
         });
 
         Intent intent=getIntent();
-        title=intent.getStringExtra("Title");
+        title=intent.getStringExtra("title");
 
         data = FirebaseFirestore.getInstance();
         data.collection("customs").whereEqualTo("title",title).get()
@@ -113,6 +124,35 @@ public class CustomRecipeActivity extends AppCompatActivity {
 
         gettitle=(TextView)findViewById(R.id.titleget);
         gettitle.setText(title);
+        getcontent=(TextView)findViewById(R.id.contentget);
+        getcontent.setText("설명 : "+intent.getStringExtra("content"));
+        gettaste=(TextView)findViewById(R.id.tasteeget);
+        gettaste.setText("Taste(Sweet) : "+intent.getStringExtra("taste"));
+        getalcoholicity=(TextView)findViewById(R.id.alcoholget);
+        getalcoholicity.setText("Alcoholicity : "+intent.getStringExtra("alcoholicity"));
+        gettechnique=(TextView)findViewById(R.id.techget);
+        gettechnique.setText("Technique : "+intent.getStringExtra("technique"));
+        getglass=(TextView)findViewById(R.id.glassget);
+        getglass.setText("Glass : "+intent.getStringExtra("glass"));
+        getcolor=(TextView)findViewById(R.id.colorget);
+        getcolor.setText("Color : "+intent.getStringExtra("color"));
+        getlink=(TextView)findViewById(R.id.linkget);
+        getlink.setText("Video link : "+intent.getStringExtra("link"));
+        getgarnish=(TextView)findViewById(R.id.garnishget);
+        getgarnish.setText("Garnish : "+intent.getStringExtra("garnish"));
+        getmain_Alcohol=(TextView)findViewById(R.id.Mainget);
+        getmain_Alcohol.setText("Main Alcohol : "+intent.getStringExtra("main_Alcohol"));
+        getingredients=(TextView)findViewById(R.id.ingredient);
+
+        String[] ingred={"ingreditents","ingreditents2","ingreditents3","ingreditents4","ingreditents5",
+                "ingreditents6","ingreditents7",};
+        String ingre="";
+        for(int i=0;i<7;i++){
+            if(intent.getStringExtra(ingred[i])!=null)
+                ingre=ingre+"\n"+intent.getStringExtra(ingred[i]);
+        }
+        getingredients.setText("Ingredients : "+ingre);
+
     }
 
     public static Bitmap StringToBitmap(String encodedString) {

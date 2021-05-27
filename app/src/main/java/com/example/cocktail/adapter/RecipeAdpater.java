@@ -69,7 +69,24 @@ public class    RecipeAdpater extends RecyclerView.Adapter<RecipeAdpater.RecipeV
                 db.collection("customs").document(String.valueOf(id.get(position))).update("click", click);
                 Context context=v.getContext();
                 Intent intent=new Intent(v.getContext(), CustomRecipeActivity.class);
-                intent.putExtra("name", mDataset.get(position).getName());
+                intent.putExtra("title", mDataset.get(position).getName());
+                intent.putExtra("content", mDataset.get(position).getContent());
+                intent.putExtra("taste", mDataset.get(position).getTaste());
+                intent.putExtra("alcoholicity", mDataset.get(position).getAlcoholicity());
+                intent.putExtra("technique", mDataset.get(position).getTechnique());
+                intent.putExtra("glass", mDataset.get(position).getGlass());
+                intent.putExtra("color", mDataset.get(position).getColor());
+                intent.putExtra("link", mDataset.get(position).getLink());
+                intent.putExtra("garnish", mDataset.get(position).getGarnish());
+                intent.putExtra("main_Alcohol", mDataset.get(position).getMain_Alcohol());
+                intent.putExtra("ingredients", mDataset.get(position).getIngredients());
+                intent.putExtra("ingredients2", mDataset.get(position).getIngredients2());
+                intent.putExtra("ingredients3", mDataset.get(position).getIngredients3());
+                intent.putExtra("ingredients4", mDataset.get(position).getIngredients4());
+                intent.putExtra("ingredients5", mDataset.get(position).getIngredients5());
+                intent.putExtra("ingredients6", mDataset.get(position).getIngredients6());
+                intent.putExtra("ingredients7", mDataset.get(position).getIngredients7());
+
                 context.startActivity(intent);
             }
         });

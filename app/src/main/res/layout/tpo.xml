@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Cocktailstemmed"
         app:layout_constraintStart_toStartOf="@+id/Cocktailstemmed"
         app:layout_constraintTop_toBottomOf="@+id/ingredient"
-        app:srcCompat="@drawable/champagne" />
+        app:srcCompat="@drawable/champagne"/>
 
     <ImageView
         android:id="@+id/Cocktailstemmed"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="@+id/Collins"
         app:layout_constraintStart_toStartOf="@+id/Collins"
         app:layout_constraintTop_toTopOf="@+id/Shot"
-        app:srcCompat="@drawable/cocktailstemmed" />
+        app:srcCompat="@drawable/cocktailstemmed"/>
 
     <ImageView
         android:id="@+id/Collins"
