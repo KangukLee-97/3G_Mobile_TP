@@ -6,6 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Space;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,13 +35,52 @@ public class CustomFragment extends Fragment {
     private static final String TAG="Custom";
     private RecyclerView recyclerView;
     FirebaseFirestore db;
+    ArrayAdapter<CharSequence> adspin1, adspin2;
+    String choice1="";
+    String choice2="";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_custom, container, false);
         rootView.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+        final Spinner spin1=(Spinner)rootView.findViewById(R.id.spinner1);
+        final Spinner spin2=(Spinner)rootView.findViewById(R.id.spinner2);
         rootView.findViewById(R.id.btnsearch).setOnClickListener(onClickListener);
+
+        adspin1=ArrayAdapter.createFromResource(getContext(), R.array.spinner_do, R.layout.spinnertext);
+        adspin1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin1.setAdapter(adspin1);
+
+        spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(adspin1.getItem(position).equals("taste")){
+                    choice1="taste";
+                    adspin2=ArrayAdapter.createFromResource(view.getContext(), R.array.spinner_do_taste,R.layout.spinnertext);
+                    adspin2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adspin2);
+
+                    spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            choice2=adspin2.getItem(position).toString();
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         recyclerView= rootView.findViewById(R.id.customrecycle);
         recyclerView.setHasFixedSize(true);
@@ -104,7 +147,7 @@ public class CustomFragment extends Fragment {
                     db = FirebaseFirestore.getInstance();
                     final ArrayList<AddInfo> CustomList=new ArrayList<>();
                     final ArrayList uid = new ArrayList();
-                    db.collection("customs").orderBy("name", Query.Direction.ASCENDING).get()
+                    db.collection("customs").whereEqualTo(choice1,choice2).get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {

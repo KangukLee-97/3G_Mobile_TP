@@ -4,4 +4,20 @@
     이 기능은 조주기능사 실기 시험 연습을 위한 기능입니다.\n 실제 실기시험은 작업형(TPO)으로 정해진 40개의 레시피 중에 임의로 3가지 칵테일을 7분 내에 정확하게 완성해야 하지만 해당 기능에서는 시간제한 없이 진행됩니다.\n\n\n
     시작하시겠습니까?</string>
     <string name="exit_test">종료하기</string>
+
+    <string-array name="spinner_do">
+        <item>glass</item>
+        <item>color</item>
+        <item>taste</item>
+        <item>click</item>
+        <item>technique</item>
+    </string-array>
+
+    <string-array name="spinner_do_taste">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

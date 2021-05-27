@@ -7,18 +7,58 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/dark_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner"/>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner"/>
+
         <Button
             android:id="@+id/btnsearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="search"/>
+            android:text="search"
+            android:textColor="@color/white"
+            android:background="@drawable/btnshape"/>
+    </LinearLayout>
 
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="검색어를 입력하세요"/>
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"
+                android:textColorHint="@color/white"
+                android:hint="검색어를 입력하세요"/>
+            <Button
+                android:id="@+id/btnsearch2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="search"
+                android:textColor="@color/white"
+                android:background="@drawable/btnshape"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/list2"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/customrecycle"
@@ -34,6 +74,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:clickable="true"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
         android:src="@drawable/ic_baseline_add_24" />
 
 </RelativeLayout>

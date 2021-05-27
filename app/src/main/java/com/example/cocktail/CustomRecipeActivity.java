@@ -106,7 +106,7 @@ public class CustomRecipeActivity extends AppCompatActivity {
         title=intent.getStringExtra("title");
 
         data = FirebaseFirestore.getInstance();
-        data.collection("customs").whereEqualTo("title",title).get()
+        data.collection("customs").whereEqualTo("name",title).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -144,8 +144,8 @@ public class CustomRecipeActivity extends AppCompatActivity {
         getmain_Alcohol.setText("Main Alcohol : "+intent.getStringExtra("main_Alcohol"));
         getingredients=(TextView)findViewById(R.id.ingredient);
 
-        String[] ingred={"ingreditents","ingreditents2","ingreditents3","ingreditents4","ingreditents5",
-                "ingreditents6","ingreditents7",};
+        String[] ingred={"ingredients","ingredients2","ingredients3","ingredients4","ingredients5",
+                "ingredients6","ingredients7",};
         String ingre="";
         for(int i=0;i<7;i++){
             if(intent.getStringExtra(ingred[i])!=null)
