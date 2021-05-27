@@ -69,17 +69,17 @@ public class AddCustomActivity extends AppCompatActivity {
         String Glass=((EditText)findViewById(R.id.customGlass)).getText().toString();
         String Color=((EditText)findViewById(R.id.customColor)).getText().toString();
         String VideoLink=((EditText)findViewById(R.id.customVideoLink)).getText().toString();
-        String Garnish = "";
-        String Ingredients = "";
-        String Ingredients2 = "";
-        String Ingredients3 = "";
-        String Ingredients4 = "";
-        String Ingredients5 = "";
-        String Ingredients6 = "";
-        String Ingredients7 = "";
-        String Main_Alcohol = "";
+        String Garnish = ((EditText)findViewById(R.id.customGarnish)).getText().toString();
+        String Ingredients = ((EditText)findViewById(R.id.customIngredient)).getText().toString();
+        String Ingredients2 = ((EditText)findViewById(R.id.customIngredient2)).getText().toString();
+        String Ingredients3 = ((EditText)findViewById(R.id.customIngredient3)).getText().toString();
+        String Ingredients4 = ((EditText)findViewById(R.id.customIngredient4)).getText().toString();
+        String Ingredients5 = ((EditText)findViewById(R.id.customIngredient5)).getText().toString();
+        String Ingredients6 = ((EditText)findViewById(R.id.customIngredient6)).getText().toString();
+        String Ingredients7 = ((EditText)findViewById(R.id.customIngredient7)).getText().toString();
+        String Main_Alcohol = ((EditText)findViewById(R.id.customMainAlcohol)).getText().toString();
         String TPO = "No";
-        String Tag = "";
+        String Tag = ((EditText)findViewById(R.id.customTag)).getText().toString();
         int click = 0;
 
         if(simage == "ok") {
