@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cocktail.AddCustomActivity;
 import com.example.cocktail.R;
 import com.example.cocktail.View.AddInfo;
+import com.example.cocktail.View.OriginalInfo;
+import com.example.cocktail.adapter.OriginalRecipeAdpater;
 import com.example.cocktail.adapter.RecipeAdpater;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class CustomFragment extends Fragment {
+public class RecipeFragment extends Fragment {
     private static final String TAG="Custom";
     private RecyclerView recyclerView;
     FirebaseFirestore db;
@@ -39,15 +41,14 @@ public class CustomFragment extends Fragment {
     String choice1="";
     String choice2="";
     private EditText editText;
-    private ArrayList<AddInfo> CustomList=new ArrayList<>();
-    private ArrayList<AddInfo> FilterdList=new ArrayList<>();
+    private ArrayList<OriginalInfo> CustomList=new ArrayList<>();
+    private ArrayList<OriginalInfo> FilterdList=new ArrayList<>();
     private ArrayList uid = new ArrayList();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_recipe, container, false);
-        rootView.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
+        ViewGroup rootView=(ViewGroup) inflater.inflate(R.layout.fragment_custom, container, false);
         final Spinner spin1=(Spinner)rootView.findViewById(R.id.spinner1);
         final Spinner spin2=(Spinner)rootView.findViewById(R.id.spinner2);
         rootView.findViewById(R.id.btnsearch).setOnClickListener(onClickListener);
@@ -117,38 +118,36 @@ public class CustomFragment extends Fragment {
         super.onResume();
         CustomList.clear();
         db = FirebaseFirestore.getInstance();
-        db.collection("customs").orderBy("name", Query.Direction.DESCENDING).get()
+        db.collection("cocktail").orderBy("Name", Query.Direction.DESCENDING).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                CustomList.add(new AddInfo(
-                                        document.getData().get("name").toString(),
-                                        document.getData().get("content").toString(),
-                                        document.getData().get("image").toString(),
-                                        document.getData().get("taste").toString(),
-                                        document.getData().get("alcoholicity").toString(),
-                                        document.getData().get("technique").toString(),
-                                        document.getData().get("glass").toString(),
-                                        document.getData().get("color").toString(),
-                                        document.getData().get("link").toString(),
-                                        document.getData().get("garnish").toString(),
-                                        document.getData().get("ingredients").toString(),
-                                        document.getData().get("ingredients2").toString(),
-                                        document.getData().get("ingredients3").toString(),
-                                        document.getData().get("ingredients4").toString(),
-                                        document.getData().get("ingredients5").toString(),
-                                        document.getData().get("ingredients6").toString(),
-                                        document.getData().get("ingredients7").toString(),
-                                        document.getData().get("main_Alcohol").toString(),
-                                        document.getData().get("tpo").toString(),
-                                        document.getData().get("tag").toString(),
-                                        Integer.parseInt(document.getData().get("click").toString()),
-                                        document.getData().get("publisher").toString()));
+                                CustomList.add(new OriginalInfo(
+                                        document.getData().get("Name").toString(),
+                                        document.getData().get("설명").toString(),
+                                        document.getData().get("ImageURL").toString(),
+                                        document.getData().get("Taste(Sweet)").toString(),
+                                        document.getData().get("Alcoholicity").toString(),
+                                        document.getData().get("Technique").toString(),
+                                        document.getData().get("Glass").toString(),
+                                        document.getData().get("Color").toString(),
+                                        document.getData().get("VideoLink").toString(),
+                                        document.getData().get("Garnish").toString(),
+                                        document.getData().get("Ingredients").toString(),
+                                        document.getData().get("Ingredients2").toString(),
+                                        document.getData().get("Ingredients3").toString(),
+                                        document.getData().get("Ingredients4").toString(),
+                                        document.getData().get("Ingredients5").toString(),
+                                        document.getData().get("Ingredients6").toString(),
+                                        document.getData().get("Ingredients7").toString(),
+                                        document.getData().get("Main Alcohol").toString(),
+                                        document.getData().get("TPO").toString(),
+                                        document.getData().get("Tag").toString()));
                                 uid.add(document.getId());
                             }
-                            RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList, uid);
+                            RecyclerView.Adapter mAdapter=new OriginalRecipeAdpater(RecipeFragment.this, CustomList, uid);
                             recyclerView.setAdapter(mAdapter);
                         } else {
                         }
@@ -163,7 +162,7 @@ public class CustomFragment extends Fragment {
                 FilterdList.add(CustomList.get(i));
             }
         }
-        RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, FilterdList, uid);
+        RecyclerView.Adapter mAdapter=new OriginalRecipeAdpater(RecipeFragment.this, FilterdList, uid);
         recyclerView.setAdapter(mAdapter);
 
     }
@@ -173,9 +172,7 @@ public class CustomFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
-                case R.id.floatingActionButton:
-                    addCustomActivity();
-                    break;
+
                 case R.id.btnsearch:
                     db = FirebaseFirestore.getInstance();
                     CustomList.clear();
@@ -185,32 +182,30 @@ public class CustomFragment extends Fragment {
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
-                                            CustomList.add(new AddInfo(
-                                                    document.getData().get("name").toString(),
-                                                    document.getData().get("content").toString(),
-                                                    document.getData().get("image").toString(),
-                                                    document.getData().get("taste").toString(),
-                                                    document.getData().get("alcoholicity").toString(),
-                                                    document.getData().get("technique").toString(),
-                                                    document.getData().get("glass").toString(),
-                                                    document.getData().get("color").toString(),
-                                                    document.getData().get("link").toString(),
-                                                    document.getData().get("garnish").toString(),
-                                                    document.getData().get("ingredients").toString(),
-                                                    document.getData().get("ingredients2").toString(),
-                                                    document.getData().get("ingredients3").toString(),
-                                                    document.getData().get("ingredients4").toString(),
-                                                    document.getData().get("ingredients5").toString(),
-                                                    document.getData().get("ingredients6").toString(),
-                                                    document.getData().get("ingredients7").toString(),
-                                                    document.getData().get("main_Alcohol").toString(),
-                                                    document.getData().get("tpo").toString(),
-                                                    document.getData().get("tag").toString(),
-                                                    Integer.parseInt(document.getData().get("click").toString()),
-                                                    document.getData().get("publisher").toString()));
+                                            CustomList.add(new OriginalInfo(
+                                                    document.getData().get("Name").toString(),
+                                                    document.getData().get("설명").toString(),
+                                                    document.getData().get("ImageURL").toString(),
+                                                    document.getData().get("Taste(Sweet)").toString(),
+                                                    document.getData().get("Alcoholicity").toString(),
+                                                    document.getData().get("Technique").toString(),
+                                                    document.getData().get("Glass").toString(),
+                                                    document.getData().get("Color").toString(),
+                                                    document.getData().get("VideoLink").toString(),
+                                                    document.getData().get("Garnish").toString(),
+                                                    document.getData().get("Ingredients").toString(),
+                                                    document.getData().get("Ingredients2").toString(),
+                                                    document.getData().get("Ingredients3").toString(),
+                                                    document.getData().get("Ingredients4").toString(),
+                                                    document.getData().get("Ingredients5").toString(),
+                                                    document.getData().get("Ingredients6").toString(),
+                                                    document.getData().get("Ingredients7").toString(),
+                                                    document.getData().get("Main Alcohol").toString(),
+                                                    document.getData().get("TPO").toString(),
+                                                    document.getData().get("Tag").toString()));
                                             uid.add(document.getId());
                                         }
-                                        RecyclerView.Adapter mAdapter=new RecipeAdpater(CustomFragment.this, CustomList, uid);
+                                        RecyclerView.Adapter mAdapter=new OriginalRecipeAdpater(RecipeFragment.this, CustomList, uid);
                                         recyclerView.setAdapter(mAdapter);
                                     } else {
                                     }
@@ -221,8 +216,4 @@ public class CustomFragment extends Fragment {
         }
     };
 
-    private void addCustomActivity() {
-        Intent intent=new Intent(getContext(), AddCustomActivity.class);
-        startActivity(intent);
-    }
 }

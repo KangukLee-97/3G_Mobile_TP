@@ -26,6 +26,7 @@
         <activity android:name=".testActivity"/>
         <activity android:name=".FirstQuestionActivity"/>
         <activity android:name=".tpoActivity"/>
+        <activity android:name=".OriginalRecipeActivity"/>
     </application>
 
 </manifest>

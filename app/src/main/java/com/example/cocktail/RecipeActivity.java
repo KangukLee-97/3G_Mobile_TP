@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
@@ -15,21 +13,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.cocktail.Fragment.CustomFragment;
+import com.example.cocktail.Fragment.RecipeFragment;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
-
 
 public class RecipeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
-    private ListView list;
+    private ListView listView;
     private String [] menu = {"레시피","커스텀 레시피","마이페이지","주조기능사","로그아웃"};
+    RecipeFragment customFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom);
+        setContentView(R.layout.activity_recipe);
+
         //맨 위에 툴바 적용
         Toolbar toolbar;
         toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -40,10 +39,10 @@ public class RecipeActivity extends AppCompatActivity {
         //navigation menu
         drawerLayout=(DrawerLayout)findViewById(R.id.drawerrecipe);
         drawerView=(View)findViewById(R.id.drawer);
-        list = (ListView) findViewById (R.id.list);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
-        list.setAdapter (adapter1);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView = (ListView) findViewById (R.id. list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1 ,menu);
+        listView.setAdapter (adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (menu[position]){
@@ -64,8 +63,11 @@ public class RecipeActivity extends AppCompatActivity {
             }
         });
 
+        customFragment=new RecipeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, customFragment).commit();
 
     }
+
 
     //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
     @Override
@@ -98,14 +100,15 @@ public class RecipeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //recipe activity로 이동
+    //userInfo activity로 이동
     private void startUserInfoActivity() {
         Intent intent=new Intent(this, UserInfoActivity.class);
         startActivity(intent);
     }
+
     //custom recipe activity로 이동
     private void startCustomActivity() {
-        Intent intent=new Intent(this, CustomActivity.class);
+        Intent intent=new Intent(this, RecipeActivity.class);
         startActivity(intent);
     }
 }

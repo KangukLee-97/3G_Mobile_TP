@@ -25,10 +25,4 @@
 
     <include layout="@layout/drawer"/>
 
-    <include
-        layout="@layout/loader"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        />
 </androidx.drawerlayout.widget.DrawerLayout>

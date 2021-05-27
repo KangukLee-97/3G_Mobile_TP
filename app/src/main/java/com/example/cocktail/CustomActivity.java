@@ -34,7 +34,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class CustomActivity extends AppCompatActivity {
-    private RelativeLayout loader;
     private DrawerLayout drawerLayout;
     private View drawerView;
     private ListView listView;
@@ -83,7 +82,6 @@ public class CustomActivity extends AppCompatActivity {
         customFragment=new CustomFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, customFragment).commit();
 
-        loader=findViewById(R.id.loader);
     }
 
 
