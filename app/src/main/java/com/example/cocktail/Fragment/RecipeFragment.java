@@ -176,7 +176,7 @@ public class RecipeFragment extends Fragment {
                 case R.id.btnsearch:
                     db = FirebaseFirestore.getInstance();
                     CustomList.clear();
-                    db.collection("customs").whereEqualTo(choice1,choice2).get()
+                    db.collection("cocktail").whereEqualTo(choice1,choice2).get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
