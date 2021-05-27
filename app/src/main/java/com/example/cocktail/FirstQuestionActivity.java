@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -25,8 +28,9 @@ public class FirstQuestionActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private Button exitButton;
-    private Button selectButton;
     private TextView cocktailName;
+    private ListView glassList;
+    private ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -61,18 +65,30 @@ public class FirstQuestionActivity extends AppCompatActivity {
 
                         int length = cockNameArr.size();
                         int randomIdx = (int)(Math.random() * (length+1));
-                        cocktailName.setText("Cocktail Name: " + cockNameArr.get(randomIdx).toString());
+                        cocktailName.setText(cockNameArr.get(randomIdx).toString());
                     }
                 });
 
-        selectButton = findViewById(R.id.question1_select_btn);
-        selectButton.setOnClickListener(new View.OnClickListener(){
-            // 글래스 선택하기 버튼 클릭시 -> activity_glass.xml로 이동
-            @Override
-            public void onClick(View v){
-                startGlassActivity();
-            }
-        });
+        glassList = (ListView)findViewById(R.id.glass_listview);
+        list = new ArrayList<String>();
+
+        db.collection("glass")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                String name = document.getData().get("Name").toString();
+                                list.add(name);   // 리스트에 칵테일 이름들 추가하기
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
+                            glassList.setAdapter(adapter);
+                        } else {
+                            Log.w("tag", "Error getting documents", task.getException());
+                        }
+                    }
+                });
     }
 
     // 종료하기 버튼 클릭시 종료할 것인지 물어보는 function
@@ -86,6 +102,8 @@ public class FirstQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 // 예를 눌렀을 경우? => Main으로 다시?
+                startMainActivity();
+                Toast.makeText(getApplicationContext(), "시험이 종료되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,9 +118,9 @@ public class FirstQuestionActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    // Glass activity로 이동
-    private void startGlassActivity() {
-        Intent intent=new Intent(this, GlassActivity.class);
+    // 메인 페이지로 이동
+    private void startMainActivity() {
+        Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

@@ -25,7 +25,6 @@
         <activity android:name=".CustomRecipeActivity"/>
         <activity android:name=".testActivity"/>
         <activity android:name=".FirstQuestionActivity"/>
-        <activity android:name=".GlassActivity"/>
     </application>
 
 </manifest>
