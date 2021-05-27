@@ -108,11 +108,12 @@ public class FirstQuestionActivity extends AppCompatActivity {
                                                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                             if(task.isSuccessful()){
                                                                 for(QueryDocumentSnapshot document : task.getResult()){
-                                                                    if(clickedGlass.equalsIgnoreCase(document.getData().get("Glass").toString())){
-                                                                        Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
+                                                                    if(clickedGlass.equalsIgnoreCase(document.getData().get("Glass").toString())){   // Glass를 맞췄을 경우
+                                                                        // Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
+                                                                        startTpoActivity();
                                                                     }
                                                                     else
-                                                                        Toast.makeText(getApplicationContext(), "오답입니다", Toast.LENGTH_SHORT).show();
+                                                                        Toast.makeText(getApplicationContext(), "오답입니다! Glass를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             }
                                                         }
@@ -126,6 +127,11 @@ public class FirstQuestionActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        showExitMessage();
     }
 
     // 종료하기 버튼 클릭시 종료할 것인지 물어보는 function
@@ -158,6 +164,12 @@ public class FirstQuestionActivity extends AppCompatActivity {
     // 메인 페이지로 이동
     private void startMainActivity() {
         Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    // tpo 실습 페이지 이동
+    private void startTpoActivity() {
+        Intent intent = new Intent(this, tpoActivity.class);
         startActivity(intent);
     }
 }

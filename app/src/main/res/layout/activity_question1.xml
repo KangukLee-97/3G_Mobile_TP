@@ -19,7 +19,7 @@
         android:layout_marginBottom="30dp"
         android:textColor="#FF6702"
         android:textStyle="bold"
-        android:textSize="40dp"/>
+        android:textSize="35dp"/>
 
     <TextView
         android:id="@+id/question1_glass"
@@ -35,6 +35,7 @@
         android:id="@+id/glass_listview"
         android:layout_width="match_parent"
         android:layout_height="470dp"
+        android:layout_marginBottom="10dp"
         android:listSelector="@android:color/holo_blue_bright"/>
 
     <LinearLayout
