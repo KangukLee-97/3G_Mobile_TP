@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,9 +29,12 @@ public class FirstQuestionActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private Button exitButton;
+    private Button submitButton;
     private TextView cocktailName;
     private ListView glassList;
     private ArrayList<String> list;
+
+    private String clickedGlass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -84,6 +88,39 @@ public class FirstQuestionActivity extends AppCompatActivity {
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
                             glassList.setAdapter(adapter);
+
+                            // 글래스 선택후 제출하기 클릭
+                            submitButton = (Button)findViewById(R.id.submit);
+
+                            glassList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
+                                    clickedGlass = adapterView.getItemAtPosition(position).toString();
+                                    // Log.w("tag2", "name: " + clickedGlass);
+                                    submitButton.setOnClickListener(new View.OnClickListener(){   // 글래스 선택 후 제출하기 버튼
+                                        @Override
+                                        public void onClick(View v){
+                                            db.collection("cocktail")
+                                                    .whereEqualTo("Name", cocktailName.getText())
+                                                    .get()
+                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                            if(task.isSuccessful()){
+                                                                for(QueryDocumentSnapshot document : task.getResult()){
+                                                                    if(clickedGlass.equalsIgnoreCase(document.getData().get("Glass").toString())){
+                                                                        Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                    else
+                                                                        Toast.makeText(getApplicationContext(), "오답입니다", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    });
+                                }
+                            });
                         } else {
                             Log.w("tag", "Error getting documents", task.getException());
                         }
