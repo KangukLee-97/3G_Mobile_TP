@@ -46,7 +46,7 @@
 
                         <TextView
                             android:id="@+id/tasteeget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
@@ -55,7 +55,7 @@
 
                         <TextView
                             android:id="@+id/alcoholget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
                             android:textColor="@color/white"
@@ -64,7 +64,7 @@
 
                         <TextView
                             android:id="@+id/techget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
@@ -73,7 +73,7 @@
 
                         <TextView
                             android:id="@+id/glassget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
@@ -82,7 +82,7 @@
 
                         <TextView
                             android:id="@+id/colorget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
@@ -91,7 +91,7 @@
 
                         <TextView
                             android:id="@+id/garnishget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
@@ -100,7 +100,7 @@
 
                         <TextView
                             android:id="@+id/Mainget"
-                            android:layout_width="match_parent"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
                             android:paddingLeft="8dp"
