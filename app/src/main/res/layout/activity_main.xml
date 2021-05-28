@@ -37,8 +37,8 @@
 
             <Button
                 android:id="@+id/btnrecipe"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
                 android:textColor="@color/white"
                 android:background="@drawable/btnshape"
                 android:layout_marginRight="60dp"
@@ -47,24 +47,24 @@
 
             <Button
                 android:id="@+id/btncustom"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
                 android:textColor="@color/white"
                 android:background="@drawable/btnshape"
                 android:text="커스텀 레시피" />
 
             <Button
                 android:id="@+id/btnmypage"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
                 android:textColor="@color/white"
                 android:background="@drawable/btnshape"
                 android:text="마이페이지" />
 
             <Button
                 android:id="@+id/btntest"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
                 android:textColor="@color/white"
                 android:background="@drawable/btnshape"
                 android:text="주조기능사" />
