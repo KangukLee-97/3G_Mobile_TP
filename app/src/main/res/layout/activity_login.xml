@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="MY Cocktail"
+        android:text="Cocktailable"
         android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold" />
