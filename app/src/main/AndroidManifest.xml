@@ -25,7 +25,7 @@
         <activity android:name=".CustomRecipeActivity"/>
         <activity android:name=".testActivity"/>
         <activity android:name=".FirstQuestionActivity"/>
-        <activity android:name=".tpoActivity"/>
+        <activity android:name=".SecondQuestionActivity"/>
         <activity android:name=".OriginalRecipeActivity"/>
     </application>
 

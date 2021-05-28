@@ -1,5 +1,6 @@
 package com.example.cocktail;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class FirstQuestionActivity extends AppCompatActivity {
     private ListView glassList;
     private ArrayList<String> list;
 
-    private String clickedGlass;
+    public static String clickedGlass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -97,7 +98,7 @@ public class FirstQuestionActivity extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
                                     clickedGlass = adapterView.getItemAtPosition(position).toString();
-                                    // Log.w("tag2", "name: " + clickedGlass);
+                                    // Log.w("tag2", "Result: " + clickedGlass);
                                     submitButton.setOnClickListener(new View.OnClickListener(){   // 글래스 선택 후 제출하기 버튼
                                         @Override
                                         public void onClick(View v){
@@ -170,7 +171,12 @@ public class FirstQuestionActivity extends AppCompatActivity {
 
     // tpo 실습 페이지 이동
     private void startTpoActivity() {
-        Intent intent = new Intent(this, tpoActivity.class);
+        Intent intent = new Intent(this, SecondQuestionActivity.class);
         startActivity(intent);
+    }
+
+    // ListView에서 클릭한 glass 명을 Return
+    public static String getClickedGlass() {
+        return clickedGlass;
     }
 }
