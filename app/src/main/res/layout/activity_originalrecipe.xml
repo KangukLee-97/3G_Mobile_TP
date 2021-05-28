@@ -166,6 +166,20 @@
                     android:textColor="@color/white"
                     android:textSize="15dp"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Ingredients"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:gravity="center|top"
+                    android:background="@drawable/list2"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/customrecycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
             </LinearLayout>
         </LinearLayout>
 

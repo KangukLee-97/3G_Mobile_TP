@@ -20,14 +20,24 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cocktail.Fragment.RecipeFragment;
+import com.example.cocktail.View.IngerInfo;
+import com.example.cocktail.View.OriginalInfo;
+import com.example.cocktail.adapter.IngredientAdpater;
+import com.example.cocktail.adapter.OriginalRecipeAdpater;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class OriginalRecipeActivity extends AppCompatActivity {
     private TextView gettitle;
@@ -42,6 +52,10 @@ public class OriginalRecipeActivity extends AppCompatActivity {
     private TextView getgarnish;
     private TextView getmain_Alcohol;
     private TextView getingredients;
+    private RecyclerView recyclerView;
+    private ArrayList<IngerInfo> CustomList=new ArrayList<>();
+    private ArrayList uid = new ArrayList();
+    FirebaseFirestore db;
 
     private String title;
     private static final String TAG="CustomRecipe";
@@ -53,6 +67,10 @@ public class OriginalRecipeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_originalrecipe);
+
+        recyclerView= findViewById(R.id.customrecycle);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //맨 위에 툴바 적용
         Toolbar toolbar;
@@ -126,7 +144,33 @@ public class OriginalRecipeActivity extends AppCompatActivity {
         }
         getingredients.setText("Ingredients : "+ingre);
 
+        CustomList.clear();
+        for(int i=0;i<7;i++){
+            if(intent.getStringExtra(ingred[i])!=null) {
+                String[] splitText=intent.getStringExtra(ingred[i]).split(",");
+                db = FirebaseFirestore.getInstance();
+                db.collection("ingredient").whereEqualTo("Name",splitText[0]).get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        CustomList.add(new IngerInfo(
+                                                document.getData().get("Name").toString(),
+                                                document.getData().get("설명").toString(),
+                                                document.getData().get("Image").toString()));
+                                    }
+                                    RecyclerView.Adapter mAdapter=new IngredientAdpater(OriginalRecipeActivity.this, CustomList);
+                                    recyclerView.setAdapter(mAdapter);
+                                } else {
+                                }
+                            }
+                        });
+            }
+        }
+
     }
+
 
 
     //툴바 왼쪽에 아이콘 클릭시 navigation menu 열리도록 만듦
