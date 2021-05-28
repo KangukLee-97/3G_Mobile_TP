@@ -54,6 +54,7 @@ public class FirstQuestionActivity extends AppCompatActivity {
         ArrayList<String> cockNameArr = new ArrayList<String>();
         db = FirebaseFirestore.getInstance();
         db.collection("cocktail")
+                .whereEqualTo("TPO", "Yes")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
