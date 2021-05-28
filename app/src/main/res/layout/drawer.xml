@@ -6,7 +6,7 @@
     android:layout_gravity="start"
     android:orientation="vertical"
     android:id="@+id/drawer"
-    android:background="#00313c">
+    android:background="#88BCC5">
 
     <ListView
         android:layout_width="match_parent"
