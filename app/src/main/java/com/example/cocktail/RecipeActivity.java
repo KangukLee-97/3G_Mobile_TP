@@ -55,6 +55,9 @@ public class RecipeActivity extends AppCompatActivity {
                     case "커스텀 레시피":
                         startCustomActivity();
                         break;
+                    case "주조기능사":
+                        startTestActivity();
+                        break;
                     case "로그아웃":
                         FirebaseAuth.getInstance().signOut();
                         startLoginActivity();
@@ -109,6 +112,11 @@ public class RecipeActivity extends AppCompatActivity {
     //custom recipe activity로 이동
     private void startCustomActivity() {
         Intent intent=new Intent(this, RecipeActivity.class);
+        startActivity(intent);
+    }
+    // test activity로 이동
+    private void startTestActivity() {
+        Intent intent = new Intent(this, testActivity.class);
         startActivity(intent);
     }
 }
