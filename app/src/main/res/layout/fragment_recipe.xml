@@ -17,19 +17,19 @@
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:background="@drawable/spinner"/>
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:background="@drawable/spinner"/>
 
         <Button
             android:id="@+id/btnsearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:text="세부 검색"
             android:textColor="@color/white"
             android:background="@drawable/btnshape"/>
