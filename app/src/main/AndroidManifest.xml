@@ -27,7 +27,9 @@
         <activity android:name=".testActivity"/>
         <activity android:name=".FirstQuestionActivity"/>
         <activity android:name=".SecondQuestionActivity"/>
+        <activity android:name=".FinalQuestionActivity"/>
         <activity android:name=".OriginalRecipeActivity"/>
+        <activity android:name=".IngredientActivity"/>
     </application>
 
 </manifest>

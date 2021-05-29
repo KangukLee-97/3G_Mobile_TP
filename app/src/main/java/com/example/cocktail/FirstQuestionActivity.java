@@ -1,6 +1,5 @@
 package com.example.cocktail;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,13 +33,15 @@ public class FirstQuestionActivity extends AppCompatActivity {
     private TextView cocktailName;
     private ListView glassList;
     private ArrayList<String> list;
+    private ArrayList<String> cockNameArr;
 
     public static String clickedGlass;
+    public static String cockName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question1);
+        setContentView(R.layout.activity_test_first);
 
         exitButton = (Button)findViewById(R.id.question1_exit_btn);
         exitButton.setOnClickListener(new View.OnClickListener(){
@@ -52,7 +53,7 @@ public class FirstQuestionActivity extends AppCompatActivity {
 
         cocktailName = (TextView)findViewById(R.id.question1_title);
 
-        ArrayList<String> cockNameArr = new ArrayList<String>();
+        cockNameArr = new ArrayList<String>();
         db = FirebaseFirestore.getInstance();
         db.collection("cocktail")
                 .whereEqualTo("TPO", "Yes")
@@ -71,7 +72,9 @@ public class FirstQuestionActivity extends AppCompatActivity {
 
                         int length = cockNameArr.size();
                         int randomIdx = (int)(Math.random() * (length+1));
-                        cocktailName.setText(cockNameArr.get(randomIdx).toString());
+                        // Log.w("tag8", "Result: " + cockNameArr);
+                        cockName = cockNameArr.get(randomIdx).toString();
+                        cocktailName.setText(cockName);
                     }
                 });
 
@@ -112,7 +115,8 @@ public class FirstQuestionActivity extends AppCompatActivity {
                                                                 for(QueryDocumentSnapshot document : task.getResult()){
                                                                     if(clickedGlass.equalsIgnoreCase(document.getData().get("Glass").toString())){   // Glass를 맞췄을 경우
                                                                         // Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
-                                                                        startTpoActivity();
+                                                                        // startTpoActivity();
+                                                                        startSecondQuestionActivity();;
                                                                     }
                                                                     else
                                                                         Toast.makeText(getApplicationContext(), "오답입니다! Glass를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
@@ -171,6 +175,12 @@ public class FirstQuestionActivity extends AppCompatActivity {
 
     // tpo 실습 페이지 이동
     private void startTpoActivity() {
+        Intent intent = new Intent(this, FinalQuestionActivity.class);
+        startActivity(intent);
+    }
+
+    // 재료선택 + 기술선택 페이지 이동
+    private void startSecondQuestionActivity() {
         Intent intent = new Intent(this, SecondQuestionActivity.class);
         startActivity(intent);
     }
@@ -179,4 +189,7 @@ public class FirstQuestionActivity extends AppCompatActivity {
     public static String getClickedGlass() {
         return clickedGlass;
     }
+
+    // Cocktail 이름 Return
+    public static String getCocktailName() { return cockName; }
 }
