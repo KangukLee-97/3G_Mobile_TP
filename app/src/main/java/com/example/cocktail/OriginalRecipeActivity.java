@@ -3,6 +3,7 @@ package com.example.cocktail;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -10,9 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,6 +56,7 @@ public class OriginalRecipeActivity extends AppCompatActivity {
     private TextView getmain_Alcohol;
     private TextView getingredients;
     private RecyclerView recyclerView;
+    private VideoView videoView;
     private ArrayList<IngerInfo> CustomList=new ArrayList<>();
     private ArrayList uid = new ArrayList();
     FirebaseFirestore db;
@@ -127,8 +131,6 @@ public class OriginalRecipeActivity extends AppCompatActivity {
         getglass.setText("Glass : "+intent.getStringExtra("glass"));
         getcolor=(TextView)findViewById(R.id.colorget);
         getcolor.setText("Color : "+intent.getStringExtra("color"));
-        getlink=(TextView)findViewById(R.id.linkget);
-        getlink.setText("Video link : "+intent.getStringExtra("link"));
         getgarnish=(TextView)findViewById(R.id.garnishget);
         getgarnish.setText("Garnish : "+intent.getStringExtra("garnish"));
         getmain_Alcohol=(TextView)findViewById(R.id.Mainget);
@@ -143,6 +145,19 @@ public class OriginalRecipeActivity extends AppCompatActivity {
                 ingre=ingre+"\n"+intent.getStringExtra(ingred[i]);
         }
         getingredients.setText("Ingredients : "+ingre);
+        
+        String url = intent.getStringExtra("link");
+        Button startBtn = (Button) findViewById(R.id.videoBtn);
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Intent.ACTION_VIEW);
+                intent1.setData(Uri.parse(url));
+                Log.d("test", url);
+                startActivity(intent1);
+            }
+        });
 
         CustomList.clear();
         for(int i=0;i<7;i++){
