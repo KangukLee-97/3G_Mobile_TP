@@ -4,16 +4,22 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:background="@drawable/dark_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <EditText
             android:id="@+id/customName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/cocktailimage"
+            android:textColorHint="@color/white"
             android:hint="칵테일 이름" />
 
         <LinearLayout
@@ -24,8 +30,7 @@
             <ImageView
                 android:id="@+id/image1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/image"
@@ -38,34 +43,49 @@
                 android:id="@+id/customContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
+                android:gravity="top|center"
                 android:hint="내용"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
                 android:inputType="textMultiLine"
+                android:textColorHint="@color/white"
                 android:lines="10" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/customMainAlcohol"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="Main Alcohol"
+            android:textColor="@color/white"
+            android:background="@drawable/cocktailimage"
+            android:textColorHint="@color/white"
             android:gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColorHint="@color/white"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/customTaste"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="칵테일 당도(1~5)" />
 
             <EditText
                 android:id="@+id/customAlcohol"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="칵테일 알코올(1~5)" />
 
         </LinearLayout>
@@ -78,13 +98,21 @@
             <EditText
                 android:id="@+id/customGarnish"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="칵테일 장식(고명)" />
 
             <EditText
                 android:id="@+id/customTech"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="칵테일 기술" />
 
         </LinearLayout>
@@ -97,13 +125,21 @@
             <EditText
                 android:id="@+id/customGlass"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="칵테일 잔 이름" />
 
             <EditText
                 android:id="@+id/customColor"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="칵테일 색깔" />
 
         </LinearLayout>
@@ -116,25 +152,41 @@
             <EditText
                 android:id="@+id/customIngredient"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료1" />
 
             <EditText
                 android:id="@+id/customIngredient2"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료2" />
 
             <EditText
                 android:id="@+id/customIngredient3"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료3" />
 
             <EditText
                 android:id="@+id/customIngredient4"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료4" />
 
         </LinearLayout>
@@ -147,25 +199,41 @@
             <EditText
                 android:id="@+id/customIngredient5"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료5" />
 
             <EditText
                 android:id="@+id/customIngredient6"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료6" />
 
             <EditText
                 android:id="@+id/customIngredient7"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="재료7" />
 
             <EditText
                 android:id="@+id/customTag"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/cocktailimage"
+                android:textColorHint="@color/white"
                 android:hint="Tag"/>
 
 
@@ -176,7 +244,11 @@
         <EditText
             android:id="@+id/customVideoLink"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/cocktailimage"
+            android:textColorHint="@color/white"
             android:hint="Youtube Link" />
 
         <Button
