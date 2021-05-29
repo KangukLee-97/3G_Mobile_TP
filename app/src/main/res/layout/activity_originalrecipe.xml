@@ -157,14 +157,27 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/cocktailimage"/>
 
-                <TextView
-                    android:id="@+id/linkget"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="8dp"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="8dp"
+                        android:textColor="@color/white"
+                        android:text="칵테일 영상 : "
+                        android:textSize="15dp"/>
+
+                    <Button
+                        android:id="@+id/videoBtn"
+                        android:paddingBottom="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="유튜브"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
