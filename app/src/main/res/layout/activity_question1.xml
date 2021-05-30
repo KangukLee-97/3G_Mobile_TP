@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/question1_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+    <TextView
+        android:id="@+id/question1_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="#FF6702"
+        android:textStyle="bold"
+        android:textSize="35dp"/>
+
+    <TextView
+        android:id="@+id/question1_glass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="1. Select the glass"/>
+
+    <ListView
+        android:id="@+id/glass_listview"
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:layout_marginBottom="10dp"
+        android:listSelector="@android:color/holo_blue_bright"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/question1_exit_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/exit_test"
+            android:layout_margin="10dp"/>
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="제출하기"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+</LinearLayout>
