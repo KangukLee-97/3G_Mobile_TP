@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class IngredientActivity extends AppCompatActivity {
 
@@ -37,6 +39,7 @@ public class IngredientActivity extends AppCompatActivity {
     private ArrayList<String> ingredName;
     private ArrayList<String> ingredQuantity;
     private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter2;
     private String totalIngredStr;
     public String cockName;
 
@@ -77,9 +80,29 @@ public class IngredientActivity extends AppCompatActivity {
                                 ingredientList.add(ingredient);   // 전체 재료 List에 추가
                             }
 
+                            Collections.sort(ingredientList);
+
                             // ListView에 전체 재료들 Upload
                             adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_multiple_choice, ingredientList);
                             ingred_listview.setAdapter(adapter);
+
+                            ingredSearch.addTextChangedListener(new TextWatcher() {
+                                @Override
+                                public void afterTextChanged(Editable edit) {
+                                    String filterText = edit.toString();
+
+                                    if (filterText.length() > 0)
+                                        ingred_listview.setFilterText(filterText);
+                                    else
+                                        ingred_listview.clearTextFilter();
+                                }
+
+                                @Override
+                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                                @Override
+                                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                            });
 
                             // 선택하기 버튼
                             ingred_button.setOnClickListener(new View.OnClickListener(){
@@ -129,14 +152,18 @@ public class IngredientActivity extends AppCompatActivity {
                                                         // 선택한 재료와 칵테일에 해당하는 재료가 맞는지 check
                                                         // 만약 맞다면? -> 다음 화면으로 넘어가기
                                                         if(isIngredSame(selectedIngredList, ingredName)) {
+                                                            // Log.w("selected", "Result: " + selectedIngredList);
+                                                            // Log.w("selected2", "Result2: " + selectedIngredList.size());
                                                             Toast.makeText(getApplicationContext(), "정답입니다! 각 재료의 수량을 입력해주세요", Toast.LENGTH_LONG).show();
                                                             checkIngredient = true;
                                                             Intent intent = new Intent(getApplicationContext(), SecondQuestionActivity.class);
                                                             intent.putExtra("list", selectedIngredList);
+                                                            intent.putExtra("size", selectedIngredList.size());
                                                             startActivity(intent);
                                                         }
                                                         else {   // 틀렸다면?
                                                             Toast.makeText(getApplicationContext(), "오답입니다! 다시 재료를 선택해주세요", Toast.LENGTH_LONG).show();
+                                                            checkIngredient = false;
                                                         }
                                                     }
                                                 }

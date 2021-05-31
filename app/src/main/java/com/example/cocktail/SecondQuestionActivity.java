@@ -42,6 +42,9 @@ public class SecondQuestionActivity extends AppCompatActivity {
     public String selected_technique;
     public Boolean checkIngredient, checkTechnique;
 
+    private ArrayList<String> received;
+    private int receivedSize;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,22 +66,8 @@ public class SecondQuestionActivity extends AppCompatActivity {
             }
         });
 
-//        // 재료선택 후 TableLayout
-//        tableLayout = (TableLayout)findViewById(R.id.tableLayout);
-//        for(int i=0; i<list.size(); i++) {
-//            TableRow tableRow = new TableRow(this);
-//            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
-//            tableRow.setLayoutParams(lp);
-//
-//            TextView ingredName = new TextView(this);
-//            EditText ingredQuan = new EditText(this);
-//            ingredName.setText(list.get(i));
-//
-//            tableRow.addView(ingredName);
-//            tableRow.addView(ingredQuan);
-//            tableLayout.addView(tableRow, i);
-//        }
-
+        Intent intent = getIntent();
+        processIntent(intent);
 
         // 기술 선택 Spinner
         techButton = (Button)findViewById(R.id.select_technique_btn);
@@ -197,5 +186,31 @@ public class SecondQuestionActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void processIntent(Intent intent) {
+        if(intent != null)
+        {
+            received = (ArrayList<String>)intent.getSerializableExtra("list");
+            // receivedSize = (int)intent.getSerializableExtra("size");
+
+            if (received != null)
+            {
+                tableLayout = (TableLayout)findViewById(R.id.tableLayout);
+                for(int i=0; i<received.size(); i++) {
+                    TableRow tableRow = new TableRow(this);
+                    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
+                    tableRow.setLayoutParams(lp);
+
+                    TextView ingredName = new TextView(this);
+                    EditText ingredQuan = new EditText(this);
+                    ingredName.setText(received.get(i));
+
+                    tableRow.addView(ingredName);
+                    tableRow.addView(ingredQuan);
+                    tableLayout.addView(tableRow);
+                }
+            }
+        }
     }
 }
