@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<!--    <EditText-->
+<!--        android:id="@+id/ingredient_search"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:hint="검색할 재료를 입력하세요."/>-->
     <ListView
         android:id="@+id/ingredient_listview"
         android:layout_width="match_parent"

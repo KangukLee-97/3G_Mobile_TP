@@ -116,7 +116,7 @@ public class FirstQuestionActivity extends AppCompatActivity {
                                                                     if(clickedGlass.equalsIgnoreCase(document.getData().get("Glass").toString())){   // Glass를 맞췄을 경우
                                                                         // Toast.makeText(getApplicationContext(), "정답입니다", Toast.LENGTH_SHORT).show();
                                                                         // startTpoActivity();
-                                                                        startSecondQuestionActivity();;
+                                                                        startSecondQuestionActivity();
                                                                     }
                                                                     else
                                                                         Toast.makeText(getApplicationContext(), "오답입니다! Glass를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
