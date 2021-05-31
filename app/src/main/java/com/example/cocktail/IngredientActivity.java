@@ -65,7 +65,7 @@ public class IngredientActivity extends AppCompatActivity {
 
         ingred_listview = (ListView)findViewById(R.id.ingredient_listview);
         ingred_button = (Button)findViewById(R.id.ingredient_submit_btn);
-        ingredSearch = (EditText)findViewById(R.id.ingredient_search);
+        // ingredSearch = (EditText)findViewById(R.id.ingredient_search);
 
         // Firestore에서 ingredient 참조 후 가져오기
         db = FirebaseFirestore.getInstance();
