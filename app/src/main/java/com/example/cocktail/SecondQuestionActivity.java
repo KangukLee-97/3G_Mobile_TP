@@ -63,6 +63,23 @@ public class SecondQuestionActivity extends AppCompatActivity {
             }
         });
 
+//        // 재료선택 후 TableLayout
+//        tableLayout = (TableLayout)findViewById(R.id.tableLayout);
+//        for(int i=0; i<list.size(); i++) {
+//            TableRow tableRow = new TableRow(this);
+//            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
+//            tableRow.setLayoutParams(lp);
+//
+//            TextView ingredName = new TextView(this);
+//            EditText ingredQuan = new EditText(this);
+//            ingredName.setText(list.get(i));
+//
+//            tableRow.addView(ingredName);
+//            tableRow.addView(ingredQuan);
+//            tableLayout.addView(tableRow, i);
+//        }
+
+
         // 기술 선택 Spinner
         techButton = (Button)findViewById(R.id.select_technique_btn);
         spinner = (Spinner)findViewById(R.id.tech_spinner);
@@ -123,8 +140,10 @@ public class SecondQuestionActivity extends AppCompatActivity {
 
                 if(checkIngredient == false && checkTechnique == false)
                     Toast.makeText(getApplicationContext(), "재료와 기술 둘다 수정하세요", Toast.LENGTH_SHORT).show();
-                else if(checkIngredient == true && checkTechnique == true)
+                else if(checkIngredient == true && checkTechnique == true) {
                     Toast.makeText(getApplicationContext(), "수고하셨습니다! 이제 조주하러 가세요", Toast.LENGTH_SHORT).show();
+                    startFinalQuestionActivity();
+                }
                 else {
                     if(checkIngredient == false)
                         Toast.makeText(getApplicationContext(), "재료를 수정해주세요", Toast.LENGTH_SHORT).show();
@@ -144,6 +163,12 @@ public class SecondQuestionActivity extends AppCompatActivity {
     // 메인 페이지로 이동
     private void startMainActivity() {
         Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    // 최종 실습 페이지로 이동
+    private void startFinalQuestionActivity() {
+        Intent intent = new Intent(this, FinalQuestionActivity.class);
         startActivity(intent);
     }
 
@@ -174,20 +199,3 @@ public class SecondQuestionActivity extends AppCompatActivity {
         alertDialog.show();
     }
 }
-
-
-// 재료선택 후 TableLayout
-//        tableLayout = (TableLayout)findViewById(R.id.tableLayout);
-//        for(int i=0; i<ingredientList.size(); i++) {
-//            TableRow tableRow = new TableRow(this);
-//            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
-//            tableRow.setLayoutParams(lp);
-//
-//            TextView ingredName = new TextView(this);
-//            EditText ingredQuan = new EditText(this);
-//            ingredName.setText(ingredientList.get(i));
-//
-//            tableRow.addView(ingredName);
-//            tableRow.addView(ingredQuan);
-//            tableLayout.addView(tableRow, i);
-//        }

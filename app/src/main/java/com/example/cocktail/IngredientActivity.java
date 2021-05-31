@@ -2,6 +2,8 @@ package com.example.cocktail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -40,9 +42,9 @@ public class IngredientActivity extends AppCompatActivity {
 
     private ListView ingred_listview;
     private Button ingred_button;
-    // private EditText ingredSearch;
+    private EditText ingredSearch;
 
-    public static boolean checkIngredient;
+    public static boolean checkIngredient = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class IngredientActivity extends AppCompatActivity {
 
         ingred_listview = (ListView)findViewById(R.id.ingredient_listview);
         ingred_button = (Button)findViewById(R.id.ingredient_submit_btn);
-        // ingredSearch = (EditText)findViewById(R.id.ingredient_search);
+        ingredSearch = (EditText)findViewById(R.id.ingredient_search);
 
         // Firestore에서 ingredient 참조 후 가져오기
         db = FirebaseFirestore.getInstance();
@@ -129,11 +131,12 @@ public class IngredientActivity extends AppCompatActivity {
                                                         if(isIngredSame(selectedIngredList, ingredName)) {
                                                             Toast.makeText(getApplicationContext(), "정답입니다! 각 재료의 수량을 입력해주세요", Toast.LENGTH_LONG).show();
                                                             checkIngredient = true;
-                                                            finish();
+                                                            Intent intent = new Intent(getApplicationContext(), SecondQuestionActivity.class);
+                                                            intent.putExtra("list", selectedIngredList);
+                                                            startActivity(intent);
                                                         }
                                                         else {   // 틀렸다면?
                                                             Toast.makeText(getApplicationContext(), "오답입니다! 다시 재료를 선택해주세요", Toast.LENGTH_LONG).show();
-                                                            checkIngredient = false;
                                                         }
                                                     }
                                                 }
@@ -145,21 +148,10 @@ public class IngredientActivity extends AppCompatActivity {
                 });
     }
 
-    // 칵테일에 해당하는 재료 갯수 count
-    private int getIngredCount(String[] list) {
-        int count = 0;
-        for(int i=0; i<list.length; i++) {
-            if(list[i] == "") break;
-            else count += 1;
-        }
-        return count;
-    }
-
     // 선택한 재료와 칵테일에 해당하는 재료가 같은지 확인
     private boolean isIngredSame(ArrayList<String> selected, ArrayList<String> ingredName) {
         return selected.containsAll(ingredName);
     }
-
 
     // 재료선택 결과 Return
     public static boolean getIngredientResult() {
