@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:duration="5000"
+    android:fromDegrees="0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:fromXScale="1.0"
+    android:fromYScale="1.0"
+    android:toXScale="-1.0"
+    android:toYScale="1.0"
+    android:fillAfter="true"
+    android:toDegrees="-3340">
+
+</rotate>
