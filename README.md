@@ -1,7 +1,9 @@
 # Cocktailable
-We have produced cocktail recipe application, Cocktailable.
-There are many cocktail recipe applications in the past,
-but few cocktail applications share their own cocktail recipes,
+
+-*Demo video(Youtube) : <https://youtu.be/qH3QSybEm-0>*
+
+We have produced cocktail recipe application, Cocktailable.   
+There are many cocktail recipe applications in the past, but few cocktail applications share their own cocktail recipes,   
 and it is difficult to find an application that provides both recipes and skills
 
 <img width=22% src=https://github.com/KangukLee-97/Cocktailable/assets/76057758/a6fc0c38-9f33-4b28-b716-d1bfd0ce92d6>
@@ -30,8 +32,34 @@ and it is difficult to find an application that provides both recipes and skills
 ## **Database** ##
 Use **Firebase** for database management
 
+<img width=80% src=https://github.com/KangukLee-97/Cocktailable/assets/76057758/4e6c3ed5-2748-45ed-aefb-a64409dc9fb9>
+
 102 cocktails, 150 ingredients, and 15 glasses were organized as follows, converted to json, and all stored in Firebase.   
 It uses Firebase Authentication to secure and manage user information.
+
+```java
+//로그인 절차
+private void Login(){
+   String email=((EditText)findViewById(R.id.ID)).getText().toString();
+   String password=((EditText)findViewById(R.id.Password)).getText().toString();
+
+   mAuth.signInWithEmailAndPassword(email, password)
+           .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+               @Override
+               public void onComplete(@NonNull Task<AuthResult> task) {
+                   if (task.isSuccessful()) {
+                       // Sign in success, update UI with the signed-in user's information
+                       startToast("로그인에 성공하였습니다");
+                       FirebaseUser user = mAuth.getCurrentUser();
+                       startMainActivity();
+                   } else {
+                       if(task.getException()!=null)
+                           startToast("로그인에 실패하였습니다");
+                   }
+               }
+           });
+}
+```
 
 ## **Environment**
 Android Studio   
