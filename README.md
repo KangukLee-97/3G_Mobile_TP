@@ -64,3 +64,9 @@ private void Login(){
 ## **Environment**
 Android Studio   
 Firebase
+
+## **Member** ##
+• [Kang Chang Hoon] / AI-Software Gachon UNIV.   
+• [Lee Kang Uk] / AI-Software Gachon UNIV.   
+• [Oh Chan Hee] / AI-Software Gachon UNIV.   
+• [Hwang Seong Min] / AI-Software Gachon UNIV.
